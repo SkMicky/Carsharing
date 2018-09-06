@@ -2,19 +2,19 @@ package main.java.model.entity;
 
 public class Car {
 
-    private int carId;
+    private int carID;
     private String carName;
     private String carModel;
     private String carGosNumber;
     private String carColor;
-    private double cost;
+    private int cost;
 
-    public int getCarId() {
-        return carId;
+    public int getCarID() {
+        return carID;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setCarID(int carID) {
+        this.carID = carID;
     }
 
     public String getCarName() {
@@ -53,7 +53,7 @@ public class Car {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 }
