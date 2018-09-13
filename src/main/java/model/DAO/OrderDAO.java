@@ -1,5 +1,13 @@
 package model.DAO;
 
+import model.ConnectionPool;
+import model.entity.Car;
+import model.entity.Order;
+import model.entity.User;
+
+import java.sql.*;
+import java.util.concurrent.LinkedBlockingQueue;
+
 public class OrderDAO {
 
     private final String GET_ALL_ORDERS = "SELECT * FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
@@ -34,5 +42,47 @@ public class OrderDAO {
 
     private final String DELETE_ORDER = "DELETE FROM ORDER WHERE ORDER_ID = ?";
 
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
+    Connection connection = connectionPool.getConnection();
 
+    Order order = new Order();
+
+    private Order collectingOrder(String sql){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery()){
+            while(resultSet.next()){
+                order.setOrderID(resultSet.getInt("ORDER_ID"));
+                order.setOrderDate(resultSet.getDate("ORDER_DATE"));
+                order.setUserID((User) resultSet.getObject("USER_ID"));
+                order.setTotalCost(resultSet.getInt("TOTAL_COST"));
+                order.setDiscount(resultSet.getInt("DISCOUNT"));
+                order.setCarID((Car) resultSet.getObject("CAR_ID"));
+                order.setTarif(resultSet.getInt("TARIF"));
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    private void creatingOrder(String sql) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, order.getOrderID());
+            preparedStatement.setDate(2, (Date) order.getOrderDate());
+            preparedStatement.setObject(3, order.getUserID());
+            preparedStatement.setInt(4, order.getTotalCost());
+            preparedStatement.setInt(5, order.getDiscount());
+            preparedStatement.setObject(6, order.getCarID());
+            preparedStatement.setInt(7, order.getTarif());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public LinkedBlockingQueue<Order> getAllOrders(){
+        LinkedBlockingQueue<Order> orders = new LinkedBlockingQueue<>();
+
+        return orders;
+    }
 }
