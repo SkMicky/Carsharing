@@ -1,13 +1,13 @@
-package main.java.model.entity;
+package model.entity;
 
 public class Car {
 
     private int carID;
     private String carName;
     private String carModel;
-    private String carGosNumber;
+    private String carGosNo;
     private String carColor;
-    private int cost;
+    private double carCost;
 
     public int getCarID() {
         return carID;
@@ -33,12 +33,12 @@ public class Car {
         this.carModel = carModel;
     }
 
-    public String getCarGosNumber() {
-        return carGosNumber;
+    public String getCarGosNo() {
+        return carGosNo;
     }
 
-    public void setCarGosNumber(String carGosNumber) {
-        this.carGosNumber = carGosNumber;
+    public void setCarGosNo(String carGosNo) {
+        this.carGosNo = carGosNo;
     }
 
     public String getCarColor() {
@@ -49,11 +49,11 @@ public class Car {
         this.carColor = carColor;
     }
 
-    public double getCost() {
-        return cost;
+    public double getCarCost() {
+        return carCost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setCost(int carCost) {
+        this.carCost = carCost;
     }
 }

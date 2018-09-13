@@ -1,11 +1,17 @@
-package main.java.model.entity;
+package model.entity;
+
+import java.sql.Date;
 
 public class User {
     private int userID;
     private String firstName;
     private String lastName;
+    private Date birthday;
     private String phoneNumber;
     private String email;
+    private int IIN;
+    private String userAddress;
+    private int driverLicense;
     private String login;
     private String password;
     private Role role;
@@ -34,6 +40,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -48,6 +62,30 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getIIN() {
+        return IIN;
+    }
+
+    public void setIIN(int IIN) {
+        this.IIN = IIN;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public int getDriverLicense() {
+        return driverLicense;
+    }
+
+    public void setDriverLicense(int driverLicense) {
+        this.driverLicense = driverLicense;
     }
 
     public String getLogin() {

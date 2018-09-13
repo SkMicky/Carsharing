@@ -1,5 +1,5 @@
-package main.java.model.entity;
+package model.entity;
 
-enum Role {
-    ADMIN, CLIENT
+public enum Role {
+    ADMIN, CLIENT;
 }

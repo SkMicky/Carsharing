@@ -1,11 +1,11 @@
-package main.java.model.entity;
+package model.entity;
 
 import java.util.Date;
 
 public class Order {
     private int orderID;
     private Date orderDate;
-    private Client clientID;
+    private User userID;
     private int totalCost;
     private int discount;
 
@@ -25,12 +25,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Client getClientID() {
-        return clientID;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setClientID(Client clientID) {
-        this.clientID = clientID;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     public int getTotalCost() {

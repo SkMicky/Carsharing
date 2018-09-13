@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,7 +32,7 @@ public class ConnectionPool {
         return con;
     }
 
-    public static ConnectionPool getUniqueInstance() {
+    public static ConnectionPool getInstance() {
         if(uniqueInstance == null){
             uniqueInstance = new ConnectionPool(15);
         }
