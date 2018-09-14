@@ -4,39 +4,44 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConnectionPool {
-    private static volatile ConnectionPool uniqueInstance;
-    private BlockingQueue<Connection> availableConnections = new ArrayBlockingQueue<Connection>(25);
+    private static volatile ConnectionPool instance;
+    private BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<Connection>();
+    private ResourceBundle resource = ResourceBundle.getBundle("resources/properties/database/database");
 
-    private ConnectionPool(int connectionsCount) {
-        for (int i = 0; i < connectionsCount; i++) {
-            availableConnections.add(createConnect());
+    private ConnectionPool() {
+        String poolVolume = resource.getString("db.connectionPoolVolume");
+        for (int i = 0; i < Integer.parseInt(poolVolume); i++) {
+            createConnection();
         }
     }
 
-    private Connection createConnect() {
+    private void createConnection() {
         Connection con = null;
-        ResourceBundle resource = ResourceBundle.getBundle("resources/properties/database/database");
+        String driver = resource.getString("db.driver");
         String url = resource.getString("db.url");
         String username = resource.getString("db.user");
         String password = resource.getString("db.password");
         try {
+            Class.forName(driver);
             con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Don't connected!");
+        } catch (ClassNotFoundException ex){
+            ex.printStackTrace();
         }
-        return con;
+        availableConnections.add(con);
     }
 
     public static ConnectionPool getInstance() {
-        if(uniqueInstance == null){
-            uniqueInstance = new ConnectionPool(15);
+        if(instance == null){
+            instance = new ConnectionPool();
         }
-        return uniqueInstance;
+        return instance;
     }
 
     public Connection getConnection(){
