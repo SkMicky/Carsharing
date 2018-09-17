@@ -1,7 +1,8 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.Order;
+import model.entity.AbstractEntity;
+import model.entity.OrderEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class OrderDAOImpl {
+public class OrderDAOImpl implements OrderDAO {
 
     private final String GET_ALL_ORDERS = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST, DISCOUNT " +
             "FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
@@ -51,16 +52,17 @@ public class OrderDAOImpl {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Connection connection = connectionPool.getConnection();
 
-    private Order collectingOrder(String sql, Order order){
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery()){
+    @Override
+    public OrderEntity getFromDB(ResultSet resultSet) {
+        OrderEntity order = new OrderEntity();
+        try{
             while(resultSet.next()){
-                order.setOrderID(resultSet.getInt("ORDER_ID"));
-                order.setOrderDate(resultSet.getDate("ORDER_DATE"));
-                order.getUserID().setUserID(resultSet.getInt("USER_ID"));
+                order.setId(resultSet.getInt("ORDER_ID"));
+                order.setDate(resultSet.getDate("ORDER_DATE"));
+                order.getUser().setId(resultSet.getInt("USER_ID"));
                 order.setTotalCost(resultSet.getInt("TOTAL_COST"));
                 order.setDiscount(resultSet.getInt("DISCOUNT"));
-                order.getCarID().setCarID(resultSet.getInt("CAR_ID"));
+                order.getCar().setId(resultSet.getInt("CAR_ID"));
                 order.setTarif(resultSet.getInt("TARIF"));
             }
         } catch(SQLException e){
@@ -70,14 +72,16 @@ public class OrderDAOImpl {
         return order;
     }
 
-    private void creatingOrder(String sql, Order order) {
+    @Override
+    public void saveToDB(String sql) {
+        OrderEntity order = new OrderEntity();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, order.getOrderID());
-            preparedStatement.setDate(2, (Date) order.getOrderDate());
-            preparedStatement.setObject(3, order.getUserID().getUserID());
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.setDate(2, (Date) order.getDate());
+            preparedStatement.setInt(3, order.getUser().getId());
             preparedStatement.setInt(4, order.getTotalCost());
             preparedStatement.setInt(5, order.getDiscount());
-            preparedStatement.setObject(6, order.getCarID().getCarID());
+            preparedStatement.setInt(6, order.getCar().getId());
             preparedStatement.setInt(7, order.getTarif());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -86,68 +90,75 @@ public class OrderDAOImpl {
         connectionPool.putBackConnection(connection);
     }
 
-    public LinkedBlockingQueue<Order> getAllOrders(){
-        Order order = new Order();
-        LinkedBlockingQueue<Order> orders = new LinkedBlockingQueue<>();
-        orders.add(collectingOrder(GET_ALL_ORDERS, order));
-        return orders;
-    }
-
-    public void getOrderByID(int orderID){
-        Order order = new Order();
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement.setInt(1, orderID);
-            collectingOrder(GET_ORDER_BY_ID, order);
-            preparedStatement.close();
+    @Override
+    public LinkedBlockingQueue<OrderEntity> getAll() {
+        OrderEntity order = new OrderEntity();
+        LinkedBlockingQueue<OrderEntity> orders = new LinkedBlockingQueue<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_ORDERS);
+            ResultSet resultSet = preparedStatement.executeQuery()) {
+            order = getFromDB(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        orders.add(order);
+        return orders;
     }
 
-    public void getOrderByUserID(int userID){
-        Order order = new Order();
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement.setInt(1, userID);
-            collectingOrder(GET_ORDER_BY_USER_ID, order);
-            preparedStatement.close();
-        } catch (SQLException e){
+    @Override
+    public OrderEntity getById(int orderId){
+        OrderEntity order = new OrderEntity();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_ID)){
+            preparedStatement.setInt(1, orderId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                order = getFromDB(resultSet);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return order;
     }
 
-    public void getOrderByCarID(int carID){
-        Order order = new Order();
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement.setInt(1, carID);
-            collectingOrder(GET_ORDER_BY_CAR_ID, order);
-            preparedStatement.close();
-        } catch (SQLException e){
+    @Override
+    public OrderEntity getByUserId(int userId) {
+        OrderEntity order = new OrderEntity();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_USER_ID)){
+            preparedStatement.setInt(1, userId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                order = getFromDB(resultSet);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return order;
     }
 
-    public void createOrder(Order order){
-        if(order == null) {
-            creatingOrder(ADD_ORDER, order);
+    @Override
+    public OrderEntity getByCarId(int carId) {
+        OrderEntity order = new OrderEntity();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_CAR_ID)){
+            preparedStatement.setInt(1, carId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                order = getFromDB(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    @Override
+    public void addOrUpdate(OrderEntity orderEntity) {
+        if(orderEntity.getId() == 0) {
+            saveToDB(ADD_ORDER);
         } else {
-            System.out.println("ERROR ADDING ORDER!!!\nAlready have such order!");
+            saveToDB(UPDATE_ORDER);
         }
     }
 
-    public void updateOrder(Order order){
-        if(order != null) {
-            creatingOrder(UPDATE_ORDER, order);
-        } else {
-            System.out.println("ERROR UPDATING ORDER!!!\nThere is nothing to update!");
-        }
-    }
-
-    public void removeOrder(int orderID){
+    @Override
+    public void remove(int id) {
         try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER)){
-            preparedStatement.setInt(1, orderID);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

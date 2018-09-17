@@ -1,5 +1,15 @@
 package model.entity;
 
 public enum Role {
-    ADMIN, CLIENT;
+    ADMIN("Admin"), CLIENT("Client");
+
+    private String userRole;
+
+    Role(String userRole){
+        this.userRole = userRole;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
 }
