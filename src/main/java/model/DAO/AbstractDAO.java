@@ -2,16 +2,11 @@ package model.DAO;
 
 import model.entity.AbstractEntity;
 
-import java.sql.ResultSet;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.List;
 
 interface AbstractDAO<T extends AbstractEntity>{
-
-    void addOrUpdate(T t);
-    void remove(int id);
-    T getById(int id);
-    LinkedBlockingQueue<T> getAll();
-    T getFromDB(ResultSet resultSet);
-    void saveToDB(String sql);
-
+    void saveOrUpdate(T t);
+    void remove(Long id);
+    T getById(Long id);
+    List<T> getAll();
 }

@@ -10,24 +10,21 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ConnectionPool {
     private static volatile ConnectionPool instance;
     private BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<Connection>();
-    private ResourceBundle resource = ResourceBundle.getBundle("resources/properties/database/database");
+
+    private ConnectionSource connectionSource = new ConnectionSource();
 
     private ConnectionPool() {
-        String poolVolume = resource.getString("db.connectionPoolVolume");
-        for (int i = 0; i < Integer.parseInt(poolVolume); i++) {
+        for (int i = 0; i < Integer.parseInt(connectionSource.getPoolVolume()); i++) {
             createConnection();
         }
     }
 
     private void createConnection() {
         Connection con = null;
-        String driver = resource.getString("db.driver");
-        String url = resource.getString("db.url");
-        String username = resource.getString("db.user");
-        String password = resource.getString("db.password");
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, username, password);
+            Class.forName(connectionSource.getDriver());
+            con = DriverManager.getConnection(connectionSource.getUrl(), connectionSource.getUsername(),
+                    connectionSource.getPassword());
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Don't connected!");

@@ -1,16 +1,17 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.User;
+import model.entity.UserEntity;
 import model.entity.Role;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.List;
+import java.util.ArrayList;
 
-public class UserDAOImpl {
+public class UserDAOImpl implements UserDAO {
 
     private final String GET_ALL_USERS = "SELECT USER_ID, USER_FIRSTNAME, USER_LASTNAME, USER_BIRTHDAY, " +
             "USER_PHONENUMBER, USER_EMAIL, USER_IIN, USER_ADDRESS, USER_DRIVERLICENSE, USER_LOGIN, USER_PASSWORD, " +
@@ -39,12 +40,12 @@ public class UserDAOImpl {
     private final String DELETE_USER = "DELETE FROM USER WHERE USER_ID = ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private Connection connection = connectionPool.getConnection();
 
-    private User getEntityFromDB(ResultSet resultSet, User user){
+    private UserEntity getFromDB(ResultSet resultSet){
+        UserEntity user = new UserEntity();
         try{
             while(resultSet.next()){
-                user.setID(resultSet.getInt("USER_ID"));
+                user.setId(resultSet.getLong("USER_ID"));
                 user.setFirstName(resultSet.getString("USER_FIRSTNAME"));
                 user.setLastName(resultSet.getString("USER_LASTNAME"));
                 user.setBirthday(resultSet.getDate("USER_BIRTHDAY"));
@@ -60,13 +61,15 @@ public class UserDAOImpl {
         } catch(SQLException e){
             e.printStackTrace();
         }
-        connectionPool.putBackConnection(connection);
         return user;
     }
 
-    private void saveEntityToDB(String sql, User user){
+    private void saveToDB(String sql){
+        UserEntity user = new UserEntity();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, user.getID());
+            preparedStatement.setLong(1, user.getId());
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
             preparedStatement.setDate(4, user.getBirthday());
@@ -84,66 +87,88 @@ public class UserDAOImpl {
         connectionPool.putBackConnection(connection);
     }
 
-    public LinkedBlockingQueue<User> getAllUsers(){
-        User user = new User();
-        LinkedBlockingQueue<User> users = new LinkedBlockingQueue<>();
+    @Override
+    public List<UserEntity> getAll() {
+        List<UserEntity> users = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_USERS);
             ResultSet resultSet = preparedStatement.executeQuery()) {
-            getEntityFromDB(resultSet, user);
+            while(resultSet.next()){
+                users.add(getFromDB(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        users.add(user);
+        connectionPool.putBackConnection(connection);
         return users;
     }
 
-    public void getUserByID(int userID){
-        User user = new User();
+    @Override
+    public UserEntity getById(Long id) {
+        UserEntity user = new UserEntity();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID)){
-            preparedStatement.setInt(1, userID);
+            preparedStatement.setLong(1, id);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                getEntityFromDB(resultSet, user);
+                user = getFromDB(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connectionPool.putBackConnection(connection);
+        return user;
     }
 
-    public void getUserByLogin(String userLogin){
-        User user = new User();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)){
-            preparedStatement.setString(1, userLogin);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                getEntityFromDB(resultSet, user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    @Override
+    public UserEntity getByRole(String role) {
+        UserEntity user = new UserEntity();
+        Connection connection = connectionPool.getConnection();
 
-    public void getUserByRole(String userRole){
-        User user = new User();
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE)){
-            preparedStatement.setString(1, userRole);
+            preparedStatement.setString(1, role);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                getEntityFromDB(resultSet, user);
+                user = getFromDB(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connectionPool.putBackConnection(connection);
+        return user;
     }
 
-    public void createOrUpdateUser(User user){
-        if(user.getID() == 0) {
-            saveEntityToDB(ADD_USER, user);
+    @Override
+    public UserEntity getByLogin(String login) {
+        UserEntity user = new UserEntity();
+        Connection connection = connectionPool.getConnection();
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)){
+            preparedStatement.setString(1, login);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                user = getFromDB(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        connectionPool.putBackConnection(connection);
+        return user;
+    }
+
+    @Override
+    public void saveOrUpdate(UserEntity userEntity) {
+        if(userEntity.getId() == 0) {
+            saveToDB(ADD_USER);
         } else {
-            saveEntityToDB(UPDATE_USER, user);
+            saveToDB(UPDATE_USER);
         }
     }
 
-    public void deleteUser(int userID){
+    @Override
+    public void remove(Long id) {
+        Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)){
-            preparedStatement.setInt(1, userID);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

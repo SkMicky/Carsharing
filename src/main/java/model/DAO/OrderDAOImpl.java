@@ -9,7 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
 
@@ -50,38 +51,36 @@ public class OrderDAOImpl implements OrderDAO {
     private final String DELETE_ORDER = "DELETE FROM ORDER WHERE ORDER_ID = ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private Connection connection = connectionPool.getConnection();
 
-    @Override
-    public OrderEntity getFromDB(ResultSet resultSet) {
+    private OrderEntity getFromDB(ResultSet resultSet) {
         OrderEntity order = new OrderEntity();
         try{
             while(resultSet.next()){
-                order.setId(resultSet.getInt("ORDER_ID"));
+                order.setId(resultSet.getLong("ORDER_ID"));
                 order.setDate(resultSet.getDate("ORDER_DATE"));
-                order.getUser().setId(resultSet.getInt("USER_ID"));
+                order.getUser().setId(resultSet.getLong("USER_ID"));
                 order.setTotalCost(resultSet.getInt("TOTAL_COST"));
                 order.setDiscount(resultSet.getInt("DISCOUNT"));
-                order.getCar().setId(resultSet.getInt("CAR_ID"));
+                order.getCar().setId(resultSet.getLong("CAR_ID"));
                 order.setTarif(resultSet.getInt("TARIF"));
             }
         } catch(SQLException e){
             e.printStackTrace();
         }
-        connectionPool.putBackConnection(connection);
         return order;
     }
 
-    @Override
-    public void saveToDB(String sql) {
+    private void saveToDB(String sql) {
         OrderEntity order = new OrderEntity();
+        Connection connection = connectionPool.getConnection();
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, order.getId());
+            preparedStatement.setLong(1, order.getId());
             preparedStatement.setDate(2, (Date) order.getDate());
-            preparedStatement.setInt(3, order.getUser().getId());
+            preparedStatement.setLong(3, order.getUser().getId());
             preparedStatement.setInt(4, order.getTotalCost());
             preparedStatement.setInt(5, order.getDiscount());
-            preparedStatement.setInt(6, order.getCar().getId());
+            preparedStatement.setLong(6, order.getCar().getId());
             preparedStatement.setInt(7, order.getTarif());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -91,63 +90,75 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public LinkedBlockingQueue<OrderEntity> getAll() {
-        OrderEntity order = new OrderEntity();
-        LinkedBlockingQueue<OrderEntity> orders = new LinkedBlockingQueue<>();
+    public List<OrderEntity> getAll() {
+        List<OrderEntity> orders = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_ORDERS);
             ResultSet resultSet = preparedStatement.executeQuery()) {
-            order = getFromDB(resultSet);
+            while(resultSet.next()){
+                orders.add(getFromDB(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        orders.add(order);
+        connectionPool.putBackConnection(connection);
         return orders;
     }
 
     @Override
-    public OrderEntity getById(int orderId){
+    public OrderEntity getById(Long orderId){
         OrderEntity order = new OrderEntity();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_ID)){
-            preparedStatement.setInt(1, orderId);
+            preparedStatement.setLong(1, orderId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 order = getFromDB(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connectionPool.putBackConnection(connection);
         return order;
     }
 
     @Override
-    public OrderEntity getByUserId(int userId) {
+    public OrderEntity getByUserId(Long userId) {
         OrderEntity order = new OrderEntity();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_USER_ID)){
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setLong(1, userId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 order = getFromDB(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connectionPool.putBackConnection(connection);
         return order;
     }
 
     @Override
-    public OrderEntity getByCarId(int carId) {
+    public OrderEntity getByCarId(Long carId) {
         OrderEntity order = new OrderEntity();
+        Connection connection = connectionPool.getConnection();
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_CAR_ID)){
-            preparedStatement.setInt(1, carId);
+            preparedStatement.setLong(1, carId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 order = getFromDB(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        connectionPool.putBackConnection(connection);
         return order;
     }
 
     @Override
-    public void addOrUpdate(OrderEntity orderEntity) {
+    public void saveOrUpdate(OrderEntity orderEntity) {
         if(orderEntity.getId() == 0) {
             saveToDB(ADD_ORDER);
         } else {
@@ -156,9 +167,10 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(Long id) {
+        Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER)){
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
