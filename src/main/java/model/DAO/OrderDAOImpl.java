@@ -14,41 +14,41 @@ import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
 
-    private final String GET_ALL_ORDERS = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST, DISCOUNT " +
-            "FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
-            "ORDER_DETAIL.CAR_ID, ORDER_DETAIL.TARIF FROM ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON ORDER = ORDER_DETAIL.ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR = ORDER_DETAIL.CAR_ID";
+    private final String GET_ALL_ORDERS = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
+            "FROM ORDER AND SELECT " +
+            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
+            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
+            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID";
 
-    private final String GET_ORDER_BY_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST, DISCOUNT " +
-            "FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
-            "ORDER_DETAIL.CAR_ID, ORDER_DETAIL.TARIF FROM ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON ORDER = ORDER_DETAIL.ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR = ORDER_DETAIL.CAR_ID " +
+    private final String GET_ORDER_BY_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
+            "FROM ORDER AND SELECT " +
+            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
+            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
+            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
+            "WHERE ORDER_ID LIKE ?";
+
+    private final String GET_ORDER_BY_USER_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
+            "FROM ORDER AND SELECT " +
+            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
+            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
+            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
+            "WHERE USER_ID LIKE ?";
+
+    private final String GET_ORDER_BY_CAR_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
+            "FROM ORDER AND SELECT " +
+            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
+            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
+            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
+            "WHERE USER_ID LIKE ?";
+
+    private final String ADD_ORDER = "INSERT INTO ORDER ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?" +
+            "INSERT INTO ORDER_DETAIL CAR_ID = ?";
+
+    private final String UPDATE_ORDER = "UPDATE ORDER SET ORDER_ID = ?, ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?" +
+            "UPDATE ORDER_DETAIL SET ORDER_DETAIL_ID = ?, ORDER_ID = ?, CAR_ID = ?" +
             "WHERE ORDER_ID = ?";
 
-    private final String GET_ORDER_BY_USER_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST, DISCOUNT " +
-            "FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
-            "ORDER_DETAIL.CAR_ID, ORDER_DETAIL.TARIF FROM ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON ORDER = ORDER_DETAIL.ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR = ORDER_DETAIL.CAR_ID " +
-            "WHERE USER_ID = ?";
-
-    private final String GET_ORDER_BY_CAR_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST, DISCOUNT " +
-            "FROM ORDER AND SELECT ORDER_DETAIL.ORDER_ID, " +
-            "ORDER_DETAIL.CAR_ID, ORDER_DETAIL.TARIF FROM ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON ORDER = ORDER_DETAIL.ORDER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR = ORDER_DETAIL.CAR_ID " +
-            "WHERE USER_ID = ?";
-
-    private final String ADD_ORDER = "INSERT INTO ORDER ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?, DISCOUNT = ?" +
-            "INSERT INTO ORDER_DETAIL ORDER_ID = ?, CAR_ID = ?, TARIF = ?";
-
-    private final String UPDATE_ORDER = "UPDATE ORDER SET ORDER_ID = ?, ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?, DISCOUNT = ? " +
-            "UPDATE ORDER_DETAIL SET ORDER_DETAIL_ID = ?, ORDER_ID = ?, CAR_ID = ?, TARIF = ? " +
-            "WHERE ORDER_ID = ?";
-
-    private final String DELETE_ORDER = "DELETE FROM ORDER WHERE ORDER_ID = ?";
+    private final String DELETE_ORDER = "DELETE FROM ORDER WHERE ORDER_ID LIKE ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -60,9 +60,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setDate(resultSet.getDate("ORDER_DATE"));
                 order.getUser().setId(resultSet.getLong("USER_ID"));
                 order.setTotalCost(resultSet.getInt("TOTAL_COST"));
-                order.setDiscount(resultSet.getInt("DISCOUNT"));
                 order.getCar().setId(resultSet.getLong("CAR_ID"));
-                order.setTarif(resultSet.getInt("TARIF"));
             }
         } catch(SQLException e){
             e.printStackTrace();
@@ -79,9 +77,7 @@ public class OrderDAOImpl implements OrderDAO {
             preparedStatement.setDate(2, (Date) order.getDate());
             preparedStatement.setLong(3, order.getUser().getId());
             preparedStatement.setInt(4, order.getTotalCost());
-            preparedStatement.setInt(5, order.getDiscount());
             preparedStatement.setLong(6, order.getCar().getId());
-            preparedStatement.setInt(7, order.getTarif());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

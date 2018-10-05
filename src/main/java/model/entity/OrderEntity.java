@@ -1,15 +1,14 @@
 package model.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class OrderEntity extends AbstractEntity {
 
     private Date date;
     private UserEntity user;
     private int totalCost;
-    private int discount;
     private CarEntity car;
-    private int tarif;
 
     public Date getDate() {
         return date;
@@ -35,14 +34,6 @@ public class OrderEntity extends AbstractEntity {
         this.totalCost = totalCost;
     }
 
-    public int getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
-
     public CarEntity getCar() {
         return car;
     }
@@ -51,11 +42,29 @@ public class OrderEntity extends AbstractEntity {
         this.car = car;
     }
 
-    public int getTarif() {
-        return tarif;
+    @Override
+    public String toString() {
+        return "Order {" +
+                "date='" + date + '\'' +
+                ", user='" + user + '\'' +
+                ", totalCost='" + totalCost + '\'' +
+                ", car='" + car + '\'' +
+                '}';
     }
 
-    public void setTarif(int tarif) {
-        this.tarif = tarif;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderEntity that = (OrderEntity) o;
+        return totalCost == that.totalCost &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(user, that.user) &&
+                Objects.equals(car, that.car);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, user, totalCost, car);
     }
 }

@@ -11,9 +11,8 @@ public class ConnectionPool {
     private static volatile ConnectionPool instance;
     private BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<Connection>();
 
-    private ConnectionSource connectionSource = new ConnectionSource();
-
     private ConnectionPool() {
+        ConnectionSource connectionSource = new ConnectionSource();
         for (int i = 0; i < Integer.parseInt(connectionSource.getPoolVolume()); i++) {
             createConnection();
         }
@@ -21,6 +20,7 @@ public class ConnectionPool {
 
     private void createConnection() {
         Connection con = null;
+        ConnectionSource connectionSource = new ConnectionSource();
         try {
             Class.forName(connectionSource.getDriver());
             con = DriverManager.getConnection(connectionSource.getUrl(), connectionSource.getUsername(),

@@ -12,31 +12,33 @@ import java.util.List;
 
 public class CarDAOImpl implements CarDAO {
 
-    private final String GET_ALL_CARS = "SELECT CAR.CAR_ID, CAR.CAR_NAME FROM CAR AND SELECT CAR_DETAIL.CAR_MODEL, " +
-            "CAR_DETAIL.CAR_GOSNo," +
-            "CAR_DETAIL.CAR_COLOR, CAR_DETAIL.CAR_COST FROM CAR_DETAIL" +
-            "LEFT JOIN CAR_DETAIL ON CAR.CAR_ID = CAR_DETAIL.CAR_ID";
+    private final String GET_ALL_CARS = "SELECT CAR.CAR_ID, CAR.CAR_NAME, CAR.CAR_GOSNo, " +
+            "CAR.CAR_COLOR, CAR.CAR_STATUS FROM CAR" +
+            "LEFT JOIN CAR ON STATUS.STATUS_ID = CAR.CAR_STATUS";
 
-    private final String ADD_CAR = "INSERT INTO CAR CAR_NAME = ? " +
-            "AND INSERT INTO CAR_DETAIL CAR_MODEL = ?, CAR_GOSNo = ?, CAR_COLOR = ?, CAR_COST = ?";
+    private final String ADD_CAR = "INSERT INTO CAR CAR_NAME = ?, " +
+            "CAR_GOSNo = ?, CAR_COLOR = ?, CAR_STATUS = ?";
 
-    private final String DELETE_CAR = "DELETE FROM CAR WHERE CAR_ID = ?";
+    private final String DELETE_CAR = "DELETE FROM CAR WHERE CAR_ID LIKE ?";
 
-    private final String GET_CAR_BY_ID = "SELECT CAR.CAR_ID, CAR.CAR_NAME FROM CAR WHERE CAR.CAR_ID =? " +
-            "AND SELECT * FROM CAR_DETAIL LEFT JOIN CAR_DETAIL ON CAR.CAR_ID = CAR_DETAIL.CAR_ID " +
-            "WHERE CAR_DETAIL.CAR_ID = ?";
+    private final String GET_CAR_BY_ID = "SELECT CAR.CAR_ID, CAR.CAR_NAME, CAR.CAR_GOSNo, " +
+            "CAR.CAR_COLOR, CAR.CAR_STATUS FROM CAR" +
+            "LEFT JOIN CAR ON STATUS.STATUS_ID = CAR.CAR_STATUS" +
+            "WHERE CAR.CAR_ID LIKE ?";
 
-    private final String GET_CAR_BY_COLOR = "SELECT CAR.CAR_ID, CAR.CAR_NAME FROM CAR WHERE CAR.CAR_ID =? " +
-            "AND SELECT * FROM CAR_DETAIL LEFT JOIN CAR_DETAIL ON CAR.CAR_ID = CAR_DETAIL.CAR_ID " +
-            "WHERE CAR_DETAIL.CAR_COLOR = ?";
+    private final String GET_CAR_BY_COLOR = "SELECT CAR.CAR_ID, CAR.CAR_NAME, CAR.CAR_GOSNo, " +
+            "CAR.CAR_COLOR, CAR.CAR_STATUS FROM CAR" +
+            "LEFT JOIN CAR ON STATUS.STATUS_ID = CAR.CAR_STATUS" +
+            "WHERE CAR.CAR_COLOR LIKE ?";
 
-    private final String GET_CAR_BY_GOSNo = "SELECT CAR.CAR_ID, CAR.CAR_NAME FROM CAR WHERE CAR.CAR_ID =? " +
-            "AND SELECT * FROM CAR_DETAIL LEFT JOIN CAR_DETAIL ON CAR.CAR_ID = CAR_DETAIL.CAR_ID " +
-            "WHERE CAR_DETAIL.CAR_GOSNo = ?";
+    private final String GET_CAR_BY_GOSNo = "SELECT CAR.CAR_ID, CAR.CAR_NAME, CAR.CAR_GOSNo, " +
+            "CAR.CAR_COLOR, CAR.CAR_STATUS FROM CAR" +
+            "LEFT JOIN CAR ON STATUS.STATUS_ID = CAR.CAR_STATUS" +
+            "WHERE CAR.CAR_GOSNo LIKE ?";
 
     private final String UPDATE_CAR = "UPDATE CAR SET CAR_NAME = ?\n" +
-            "UPDATE CAR_DETAIL SET CAR_MODEL =?, CAR_GOSNo = ?, CAR_COLOR = ?, CAR_COST = ? " +
-            "WHERE CAR_ID = ?";
+            "CAR_GOSNo = ?, CAR_COLOR = ?, CAR_STATUS" +
+            "WHERE CAR_ID LIKE ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -50,7 +52,6 @@ public class CarDAOImpl implements CarDAO {
                 car.setModel(resultSet.getString("CAR_MODEL"));
                 car.setGosNo(resultSet.getString("CAR_GOSNo"));
                 car.setColor(resultSet.getString("CAR_COLOR"));
-                car.setCost(resultSet.getInt("CAR_COST"));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -68,7 +69,6 @@ public class CarDAOImpl implements CarDAO {
             preparedStatement.setString(3, car.getModel());
             preparedStatement.setString(4, car.getGosNo());
             preparedStatement.setString(5, car.getColor());
-            preparedStatement.setDouble(6, car.getCost());
             preparedStatement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

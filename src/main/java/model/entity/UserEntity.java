@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class UserEntity extends AbstractEntity {
 
@@ -14,7 +15,7 @@ public class UserEntity extends AbstractEntity {
     private int driverLicense;
     private String login;
     private String password;
-    private Role role;
+    private String role;
 
     public String getFirstName() {
         return firstName;
@@ -96,11 +97,52 @@ public class UserEntity extends AbstractEntity {
         this.password = password;
     }
 
-    public Enum getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", IIN=" + IIN +
+                ", userAddress='" + userAddress + '\'' +
+                ", driverLicense=" + driverLicense +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return IIN == that.IIN &&
+                driverLicense == that.driverLicense &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(birthday, that.birthday) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(userAddress, that.userAddress) &&
+                Objects.equals(login, that.login) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(role, that.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, birthday, phoneNumber, email, IIN, userAddress,
+                driverLicense, login, password, role);
     }
 }

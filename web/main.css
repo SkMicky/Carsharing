@@ -1,0 +1,205 @@
+body, div{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: Montserrat,sans-serif;
+  background-image: url("images/footer_bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.header{
+  position: relative;
+  padding: 0 2%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 1;
+}
+
+.menu-bar{
+  flex:1;
+  max-width: 550px;
+}
+
+.list{
+  display:grid;
+  list-style-type: none;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header-link{
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  padding:15px 0;
+}
+
+.header-link:hover{
+  color: darkred;
+}
+
+.login a{
+  color:#000000;
+}
+
+.baner{
+  position: relative;
+  overflow: hidden;
+  margin:0;
+  background-image: url("images/astana.png");
+  background-repeat: no-repeat;
+  background-position:0 100%;
+  padding:45px 0;
+}
+
+.baner-title{
+  padding-left:40px;
+  line-height: 100px;
+  font-size: 6em;
+  font-weight: 300;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.baner-description{
+  padding-left: 40px;
+  line-height: 35px;
+  font-size: 2em;
+  max-width: 380px;
+}
+
+.baner-price{
+  margin: 40px 0;
+  color: red;
+  padding-left: 40px;
+  font-size: 5em;
+  font-weight: 900;
+}
+
+.poster{
+  overflow: hidden;
+  position: absolute;
+  left: 44%;
+  top: -750px;
+  width: 1500px;
+  height: 1500px;
+  border-radius: 50%;
+  object-fit: cover;
+  mask-image: radial-gradient(circle, #fff, #000);
+}
+
+.poster-img{
+  margin-top: 500px;
+  margin-left: -250px;
+  width: 100%;
+  height: 100%;
+}
+
+.about{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 40px;
+  padding: 0 5%;
+  margin: 30px 15px;
+}
+
+.about-title{
+  grid-column: 1 / -1;
+  font-size: 3em;
+  font-weight: 800;
+  line-height: 25px;
+}
+
+.description-item{
+  display: flex;
+}
+
+.specification{
+  margin-left: 3%;
+  align-self: center;
+}
+
+.description-title{
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.description-text{
+  margin: 0;
+  width: 85%;
+  font-size: 21px;
+  line-height: 33px;
+}
+
+.item-img{
+  height: 132px;
+  width: 118px;
+}
+
+.general-car{
+  width: 100%;
+}
+
+.cars{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 40px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(22, 22, 30, 1));
+  margin-top: -110px;
+  padding: 110px 20px 20px;
+}
+
+.cars-heading{
+  grid-column: 1 / -1;
+  margin-top: -25px;
+  color:lightgoldenrodyellow;
+  font-size: 3em;
+  font-weight: 900;
+}
+
+.car-info {
+  border: grey 3px groove;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.car-image{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+.car-title{
+  font-size: 3em;
+  line-height:0;
+  text-align: center;
+  text-shadow: 2px 2px 3px #ffffff;
+}
+
+.footer{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 40px;
+}
+
+.footer-logo{
+  grid-column: 2;
+  font-size: 2em;
+  font-weight: 700;
+  text-shadow: 2px 2px 3px #ffffff;
+}
+
+.copyright{
+  grid-column: 1 / -1;
+  justify-self: center;
+}
