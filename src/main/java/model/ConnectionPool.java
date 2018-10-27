@@ -3,7 +3,6 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -12,26 +11,22 @@ public class ConnectionPool {
     private BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<Connection>();
 
     private ConnectionPool() {
-        ConnectionSource connectionSource = new ConnectionSource();
-        for (int i = 0; i < Integer.parseInt(connectionSource.getPoolVolume()); i++) {
+        for (int i = 0; i < Integer.parseInt(ConnectionSource.getPoolVolume()); i++) {
             createConnection();
         }
     }
 
     private void createConnection() {
-        Connection con = null;
-        ConnectionSource connectionSource = new ConnectionSource();
         try {
-            Class.forName(connectionSource.getDriver());
-            con = DriverManager.getConnection(connectionSource.getUrl(), connectionSource.getUsername(),
-                    connectionSource.getPassword());
+            Class.forName(ConnectionSource.getDriver());
+            Connection con = DriverManager.getConnection(ConnectionSource.getUrl(), ConnectionSource.getUsername(),
+                    ConnectionSource.getPassword());
+            availableConnections.add(con);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Don't connected!");
-        } catch (ClassNotFoundException ex){
-            ex.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
         }
-        availableConnections.add(con);
     }
 
     public static ConnectionPool getInstance() {
@@ -49,4 +44,3 @@ public class ConnectionPool {
         availableConnections.add(con);
     }
 }
-

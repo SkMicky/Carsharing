@@ -12,89 +12,70 @@ import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO {
 
-    private final String GET_ALL_USERS = "SELECT USER.USER_ID,\n" +
-            "USER.USER_LASTNAME,\n" +
-            "USER.USER_FIRSTNAME,\n" +
-            "USER.USER_BIRTHDAY,\n" +
-            "USER.USER_PHONENUMBER,\n" +
-            "USER.USER_EMAIL,\n" +
-            "USER.USER_IIN,\n" +
-            "USER.USER_ADDRESS,\n" +
-            "USER.USER_DRIVERLICENSE,\n" +
-            "USER.USER_LOGIN,\n" +
-            "USER.USER_PASSWORD,\n" +
-            "FROM USER" +
-            "LEFT JOIN USER ON ROLE.ROLE_ID = USER.USER_ROLE";
+    private final String GET_ALL_USERS = "SELECT USER.USER_ID, " +
+            "USER.USER_LASTNAME, " +
+            "USER.USER_FIRSTNAME, " +
+            "USER.USER_BIRTHDAY, " +
+            "USER.USER_PHONENUMBER, " +
+            "USER.USER_EMAIL, " +
+            "USER.USER_IIN, " +
+            "USER.USER_ADDRESS, " +
+            "USER.USER_DRIVERLICENSE, " +
+            "USER.USER_LOGIN, " +
+            "USER.USER_PASSWORD FROM USER";
 
-    private final String GET_USER_BY_ID = "SELECT USER.USER_ID,\n" +
-            "USER.USER_LASTNAME,\n" +
-            "USER.USER_FIRSTNAME,\n" +
-            "USER.USER_BIRTHDAY,\n" +
-            "USER.USER_PHONENUMBER,\n" +
-            "USER.USER_EMAIL,\n" +
-            "USER.USER_IIN,\n" +
-            "USER.USER_ADDRESS,\n" +
-            "USER.USER_DRIVERLICENSE,\n" +
-            "USER.USER_LOGIN,\n" +
-            "USER.USER_PASSWORD,\n" +
-            "FROM USER" +
-            "LEFT JOIN USER ON ROLE.ROLE_ID = USER.USER_ROLE" +
+    private final String GET_USER_BY_ID = "SELECT USER.USER_ID, " +
+            "USER.USER_LASTNAME, " +
+            "USER.USER_FIRSTNAME, " +
+            "USER.USER_BIRTHDAY, " +
+            "USER.USER_PHONENUMBER, " +
+            "USER.USER_EMAIL, " +
+            "USER.USER_IIN, " +
+            "USER.USER_ADDRESS, " +
+            "USER.USER_DRIVERLICENSE, " +
+            "USER.USER_LOGIN, " +
+            "USER.USER_PASSWORD FROM USER WHERE USER_ID = ?";
+
+    private final String GET_USER_BY_ROLE = "SELECT USER.USER_ID, " +
+            "USER.USER_LASTNAME, " +
+            "USER.USER_FIRSTNAME, " +
+            "USER.USER_BIRTHDAY, " +
+            "USER.USER_PHONENUMBER, " +
+            "USER.USER_EMAIL, " +
+            "USER.USER_IIN, " +
+            "USER.USER_ADDRESS, " +
+            "USER.USER_DRIVERLICENSE, " +
+            "USER.USER_LOGIN, " +
+            "USER.USER_PASSWORD " +
+            "FROM USER WHERE USER.USER_ROLE = ?";
+
+    private final String GET_USER_BY_LOGIN = "SELECT USER.USER_ID, " +
+            "USER.USER_LASTNAME, " +
+            "USER.USER_FIRSTNAME, " +
+            "USER.USER_BIRTHDAY, " +
+            "USER.USER_PHONENUMBER, " +
+            "USER.USER_EMAIL, " +
+            "USER.USER_IIN, " +
+            "USER.USER_ADDRESS, " +
+            "USER.USER_DRIVERLICENSE, " +
+            "USER.USER_LOGIN, " +
+            "USER.USER_PASSWORD " +
+            "FROM USER WHERE USER.USER_LOGIN = ?";
+
+    private final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT USER.USER_LOGIN FROM USER WHERE USER.USER_LOGIN = ? " +
+            "AND USER.USER_PASSWORD = ?";
+
+    private final String ADD_USER = "INSERT INTO USER(USER_LASTNAME, USER_FIRSTNAME, USER_BIRTHDAY, " +
+            "USER_PHONENUMBER, USER_EMAIL, USER_IIN, USER_ADDRESS, USER_DRIVERLICENSE, USER_LOGIN, " +
+            "USER_PASSWORD, USER_ROLE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+    private final String UPDATE_USER = "UPDATE USER SET USER_ID = ?, USER.USER_LASTNAME = ?, USER.USER_FIRSTNAME = ?, " +
+            "USER.USER_BIRTHDAY = ?, USER.USER_PHONENUMBER = ?, USER.USER_EMAIL = ?, USER.USER_IIN = ?, " +
+            "USER.USER_ADDRESS = ?, USER.USER_DRIVERLICENSE = ?, USER.USER_LOGIN = ?, USER.USER_PASSWORD = ?, " +
+            "USER_ROLE = ? WHERE USER_ID LIKE ?";
+
+    private final String DELETE_USER = "DELETE FROM `carsharing`.`USER`" +
             "WHERE USER_ID LIKE ?";
-
-    private final String GET_USER_BY_ROLE = "SELECT USER.USER_ID,\n" +
-            "USER.USER_LASTNAME,\n" +
-            "USER.USER_FIRSTNAME,\n" +
-            "USER.USER_BIRTHDAY,\n" +
-            "USER.USER_PHONENUMBER,\n" +
-            "USER.USER_EMAIL,\n" +
-            "USER.USER_IIN,\n" +
-            "USER.USER_ADDRESS,\n" +
-            "USER.USER_DRIVERLICENSE,\n" +
-            "USER.USER_LOGIN,\n" +
-            "USER.USER_PASSWORD,\n" +
-            "FROM USER" +
-            "LEFT JOIN USER ON ROLE.ROLE_ID = USER.USER_ROLE" +
-            "WHERE USER_ROLE LIKE ?";
-
-    private final String GET_USER_BY_LOGIN = "SELECT USER.USER_ID,\n" +
-            "USER.USER_LASTNAME,\n" +
-            "USER.USER_FIRSTNAME,\n" +
-            "USER.USER_BIRTHDAY,\n" +
-            "USER.USER_PHONENUMBER,\n" +
-            "USER.USER_EMAIL,\n" +
-            "USER.USER_IIN,\n" +
-            "USER.USER_ADDRESS,\n" +
-            "USER.USER_DRIVERLICENSE,\n" +
-            "USER.USER_LOGIN,\n" +
-            "USER.USER_PASSWORD,\n" +
-            "FROM USER" +
-            "LEFT JOIN USER ON ROLE.ROLE_ID = USER.USER_ROLE" +
-            "WHERE USER_LOGIN LIKE ?";
-
-    private final String ADD_USER = "INSERT INTO USER USER.USER_LASTNAME = ?,\n" +
-            "USER.USER_FIRSTNAME = ?,\n" +
-            "USER.USER_BIRTHDAY = ?,\n" +
-            "USER.USER_PHONENUMBER = ?,\n" +
-            "USER.USER_EMAIL = ?,\n" +
-            "USER.USER_IIN = ?,\n" +
-            "USER.USER_ADDRESS = ?,\n" +
-            "USER.USER_DRIVERLICENSE = ?,\n" +
-            "USER.USER_LOGIN = ?,\n" +
-            "USER.USER_PASSWORD = ?, USER_ROLE = ?";
-
-    private final String UPDATE_USER = "UPDATE USER SET USER_ID = ?, USER.USER_LASTNAME = ?,\n" +
-            "USER.USER_FIRSTNAME = ?,\n" +
-            "USER.USER_BIRTHDAY = ?,\n" +
-            "USER.USER_PHONENUMBER = ?,\n" +
-            "USER.USER_EMAIL = ?,\n" +
-            "USER.USER_IIN = ?,\n" +
-            "USER.USER_ADDRESS = ?,\n" +
-            "USER.USER_DRIVERLICENSE = ?,\n" +
-            "USER.USER_LOGIN = ?,\n" +
-            "USER.USER_PASSWORD = ?, USER_ROLE = ?" +
-            "WHERE USER_ID LIKE ?";
-
-    private final String DELETE_USER = "DELETE FROM USER WHERE USER_ID LIKE ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -108,12 +89,11 @@ public class UserDAOImpl implements UserDAO {
                 user.setBirthday(resultSet.getDate("USER_BIRTHDAY"));
                 user.setPhoneNumber(resultSet.getString("USER_PHONENUMBER"));
                 user.setEmail(resultSet.getString("USER_EMAIL"));
-                user.setIIN(resultSet.getInt("USER_IIN"));
+                user.setIIN(resultSet.getLong("USER_IIN"));
                 user.setUserAddress(resultSet.getString("USER_ADDRESS"));
-                user.setDriverLicense(resultSet.getInt("USER_DRIVERLICENSE"));
+                user.setDriverLicense(resultSet.getLong("USER_DRIVERLICENSE"));
                 user.setLogin(resultSet.getString("USER_LOGIN"));
                 user.setPassword(resultSet.getString("USER_PASSWORD"));
-                user.setRole(resultSet.getString("USER_ROLE"));
             }
         } catch(SQLException e){
             e.printStackTrace();
@@ -121,23 +101,21 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    private void saveToDB(String sql){
-        UserEntity user = new UserEntity();
+    private void saveToDB(String sql, UserEntity user){
         Connection connection = connectionPool.getConnection();
-
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setLong(1, user.getId());
+            preparedStatement.setString(1, user.getLastName());
             preparedStatement.setString(2, user.getFirstName());
-            preparedStatement.setString(3, user.getLastName());
-            preparedStatement.setDate(4, user.getBirthday());
-            preparedStatement.setString(5, user.getPhoneNumber());
-            preparedStatement.setString(6, user.getEmail());
-            preparedStatement.setInt(7, user.getIIN());
-            preparedStatement.setString(8, user.getUserAddress());
-            preparedStatement.setInt(9, user.getDriverLicense());
-            preparedStatement.setString(10, user.getLogin());
-            preparedStatement.setString(11, user.getPassword());
-            preparedStatement.setString(12, user.getRole());
+            preparedStatement.setDate(3, user.getBirthday());
+            preparedStatement.setString(4, user.getPhoneNumber());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setLong(6, user.getIIN());
+            preparedStatement.setString(7, user.getUserAddress());
+            preparedStatement.setLong(8, user.getDriverLicense());
+            preparedStatement.setString(9, user.getLogin());
+            preparedStatement.setString(10, user.getPassword());
+            preparedStatement.setInt(11, user.getRole());
+            preparedStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -158,6 +136,7 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
         connectionPool.putBackConnection(connection);
+        System.out.println(users);
         return users;
     }
 
@@ -179,12 +158,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserEntity getByRole(String role) {
+    public UserEntity getByRole(int role) {
         UserEntity user = new UserEntity();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE)){
-            preparedStatement.setString(1, role);
+            preparedStatement.setInt(1, role);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 user = getFromDB(resultSet);
             }
@@ -212,12 +191,30 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
+    public UserEntity searchInDataBase(String login,String password){
+        UserEntity user = new UserEntity();
+        Connection connection = connectionPool.getConnection();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD)) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    user.setLogin(resultSet.getString("USER_LOGIN"));
+                }
+            }
+        } catch (SQLException se){
+            se.printStackTrace();
+        }
+        connectionPool.putBackConnection(connection);
+        return user;
+    }
+
     @Override
     public void saveOrUpdate(UserEntity userEntity) {
-        if(userEntity.getId() == 0) {
-            saveToDB(ADD_USER);
+        if(userEntity.getId() == null) {
+            saveToDB(ADD_USER, userEntity);
         } else {
-            saveToDB(UPDATE_USER);
+            saveToDB(UPDATE_USER, userEntity);
         }
     }
 
@@ -231,5 +228,10 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
         connectionPool.putBackConnection(connection);
+    }
+
+    public static void main(String[] args) {
+        UserDAOImpl userDAO = new UserDAOImpl();
+        userDAO.getAll();
     }
 }

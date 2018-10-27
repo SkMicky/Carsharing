@@ -2,7 +2,11 @@ package model.DAO;
 
 import model.entity.CarEntity;
 
+import java.util.List;
+
 public interface CarDAO extends AbstractDAO<CarEntity> {
-    CarEntity getCarByColor(String color);
-    CarEntity getCarByGosNo(String gosNo);
+    List<CarEntity> getByColor(String color);
+    CarEntity getByGosNo(String gosNo);
+    List<CarEntity> getByStatus(int status);
+    void changeStatus(long carId, int status);
 }

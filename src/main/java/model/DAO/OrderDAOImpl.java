@@ -41,8 +41,8 @@ public class OrderDAOImpl implements OrderDAO {
             "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
             "WHERE USER_ID LIKE ?";
 
-    private final String ADD_ORDER = "INSERT INTO ORDER ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?" +
-            "INSERT INTO ORDER_DETAIL CAR_ID = ?";
+    private final String ADD_ORDER = "INSERT INTO 'ORDER'('ORDER_DATE', 'USER_ID', 'TOTAL_COST') VALUES(?,?,?)" +
+            "AND INSERT INTO 'ORDER_DETAIL' ('CAR_ID') VALUES(?)";
 
     private final String UPDATE_ORDER = "UPDATE ORDER SET ORDER_ID = ?, ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?" +
             "UPDATE ORDER_DETAIL SET ORDER_DETAIL_ID = ?, ORDER_ID = ?, CAR_ID = ?" +
@@ -58,9 +58,8 @@ public class OrderDAOImpl implements OrderDAO {
             while(resultSet.next()){
                 order.setId(resultSet.getLong("ORDER_ID"));
                 order.setDate(resultSet.getDate("ORDER_DATE"));
-                order.getUser().setId(resultSet.getLong("USER_ID"));
-                order.setTotalCost(resultSet.getInt("TOTAL_COST"));
-                order.getCar().setId(resultSet.getLong("CAR_ID"));
+                order.setUserId(resultSet.getLong("USER_ID"));
+                order.setCarId(resultSet.getLong("CAR_ID"));
             }
         } catch(SQLException e){
             e.printStackTrace();
@@ -75,9 +74,8 @@ public class OrderDAOImpl implements OrderDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, order.getId());
             preparedStatement.setDate(2, (Date) order.getDate());
-            preparedStatement.setLong(3, order.getUser().getId());
-            preparedStatement.setInt(4, order.getTotalCost());
-            preparedStatement.setLong(6, order.getCar().getId());
+            preparedStatement.setLong(3, order.getUserId());
+            preparedStatement.setLong(6, order.getCarId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

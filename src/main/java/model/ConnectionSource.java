@@ -4,30 +4,23 @@ import java.util.ResourceBundle;
 
 class ConnectionSource {
 
-    private ResourceBundle resource = ResourceBundle.getBundle("resources/properties/database/database");
-    private final String poolVolume = resource.getString("db.connectionPoolVolume");
-    private final String driver = resource.getString("db.driver");
-    private final String url = resource.getString("db.url");
-    private final String username = resource.getString("db.user");
-    private final String password = resource.getString("db.password");
+    private static final ResourceBundle resource = ResourceBundle.getBundle("properties/database/database");
 
-    String getPoolVolume() {
-        return poolVolume;
+    static String getPoolVolume() {
+        return resource.getString("db.connectionPoolVolume");
     }
 
-    String getDriver() {
-        return driver;
+    static String getDriver(){ return resource.getString("db.driver");}
+
+    static String getUrl() {
+        return resource.getString("db.url");
     }
 
-    String getUrl() {
-        return url;
+    static String getUsername() {
+        return resource.getString("db.user");
     }
 
-    String getUsername() {
-        return username;
-    }
-
-    String getPassword() {
-        return password;
+    static String getPassword() {
+        return resource.getString("db.password");
     }
 }

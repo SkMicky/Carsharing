@@ -1,29 +1,23 @@
 package model.entity;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 
 public class UserEntity extends AbstractEntity {
 
-    private String firstName;
     private String lastName;
+    private String firstName;
     private Date birthday;
     private String phoneNumber;
     private String email;
-    private int IIN;
+    private long IIN;
     private String userAddress;
-    private int driverLicense;
+    private long driverLicense;
     private String login;
     private String password;
-    private String role;
+    private int role;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public String getLastName() {
         return lastName;
@@ -31,6 +25,14 @@ public class UserEntity extends AbstractEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public Date getBirthday() {
@@ -57,11 +59,11 @@ public class UserEntity extends AbstractEntity {
         this.email = email;
     }
 
-    public int getIIN() {
+    public long getIIN() {
         return IIN;
     }
 
-    public void setIIN(int IIN) {
+    public void setIIN(long IIN) {
         this.IIN = IIN;
     }
 
@@ -73,11 +75,11 @@ public class UserEntity extends AbstractEntity {
         this.userAddress = userAddress;
     }
 
-    public int getDriverLicense() {
+    public long getDriverLicense() {
         return driverLicense;
     }
 
-    public void setDriverLicense(int driverLicense) {
+    public void setDriverLicense(long driverLicense) {
         this.driverLicense = driverLicense;
     }
 
@@ -97,11 +99,11 @@ public class UserEntity extends AbstractEntity {
         this.password = password;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 

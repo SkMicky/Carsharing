@@ -181,25 +181,50 @@ body{
 
 .car-title{
   font-size: 3em;
+  color: white;
   line-height:0;
   text-align: center;
-  text-shadow: 2px 2px 3px #ffffff;
+  text-shadow: 0 0 5px black, 1px 1px 3px black;
 }
 
 .footer{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 2fr 1fr 1fr;
   column-gap: 40px;
+  align-items: center;
 }
 
 .footer-logo{
-  grid-column: 2;
+  text-align: center;
   font-size: 2em;
   font-weight: 700;
-  text-shadow: 2px 2px 3px #ffffff;
+  color: white;
+}
+
+.footer-menu{
+  color: white;
+}
+
+.footer-item a{
+  text-decoration: none;
+  color: white;
+}
+
+.footer-contacts{
+  color: white;
+}
+
+.footer-contacts .phone{
+  margin: 0;
+  margin-bottom: 12px;
 }
 
 .copyright{
   grid-column: 1 / -1;
   justify-self: center;
+}
+
+.copyright h5{
+  color: white;
+  font-weight: 100;
 }

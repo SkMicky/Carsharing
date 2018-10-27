@@ -5,10 +5,9 @@ import java.util.Objects;
 public class CarEntity extends AbstractEntity {
 
     private String name;
-    private String model;
     private String gosNo;
     private String color;
-    private String status;
+    private int status;
 
     public String getName() {
         return name;
@@ -16,14 +15,6 @@ public class CarEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public String getGosNo() {
@@ -42,11 +33,11 @@ public class CarEntity extends AbstractEntity {
         this.color = color;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -54,7 +45,6 @@ public class CarEntity extends AbstractEntity {
     public String toString() {
         return "Car{" +
                 "name='" + name + '\'' +
-                ", model='" + model + '\'' +
                 ", gosNo='" + gosNo + '\'' +
                 ", color='" + color + '\'' +
                 ", status=" + status +
@@ -67,7 +57,6 @@ public class CarEntity extends AbstractEntity {
         if (o == null || getClass() != o.getClass()) return false;
         CarEntity carEntity = (CarEntity) o;
         return Objects.equals(name, carEntity.name) &&
-                Objects.equals(model, carEntity.model) &&
                 Objects.equals(gosNo, carEntity.gosNo) &&
                 Objects.equals(color, carEntity.color) &&
                 Objects.equals(status, carEntity.status);
@@ -75,6 +64,6 @@ public class CarEntity extends AbstractEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, model, gosNo, color, status);
+        return Objects.hash(name, gosNo, color, status);
     }
 }
