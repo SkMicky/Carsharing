@@ -1,11 +1,13 @@
 package model.entity;
 
-import java.math.BigDecimal;
+import model.entity.enumeration.UserRole;
+
 import java.sql.Date;
 import java.util.Objects;
 
 public class UserEntity extends AbstractEntity {
 
+    private long id;
     private String lastName;
     private String firstName;
     private Date birthday;
@@ -16,8 +18,17 @@ public class UserEntity extends AbstractEntity {
     private long driverLicense;
     private String login;
     private String password;
-    private int role;
+    private UserRole role;
 
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getLastName() {
         return lastName;
@@ -99,11 +110,11 @@ public class UserEntity extends AbstractEntity {
         this.password = password;
     }
 
-    public int getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

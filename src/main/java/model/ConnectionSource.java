@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 class ConnectionSource {
 
-    private static final ResourceBundle resource = ResourceBundle.getBundle("properties/database/database");
+    private static final ResourceBundle resource = ResourceBundle.getBundle("/property/database/database");
 
     static String getPoolVolume() {
         return resource.getString("db.connectionPoolVolume");

@@ -1,19 +1,33 @@
 package model.entity;
 
-import java.util.Date;
+import model.entity.enumeration.OrderStatus;
+
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class OrderEntity extends AbstractEntity {
 
-    private Date date;
+    private long id;
+    private Timestamp date;
     private long userId;
     private long carId;
+    private OrderStatus status;
 
-    public Date getDate() {
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -33,12 +47,22 @@ public class OrderEntity extends AbstractEntity {
         this.carId = carId;
     }
 
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "Order {" +
-                "date='" + date + '\'' +
-                ", userId='" + userId + '\'' +
-                ", carId='" + carId + '\'' +
+        return "OrderEntity{" +
+                "id=" + id +
+                ", date=" + date +
+                ", userId=" + userId +
+                ", carId=" + carId +
+                ", status=" + status +
                 '}';
     }
 
@@ -47,13 +71,15 @@ public class OrderEntity extends AbstractEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderEntity that = (OrderEntity) o;
-        return  Objects.equals(date, that.date) &&
-                Objects.equals(userId, that.userId) &&
-                Objects.equals(carId, that.carId);
+        return id == that.id &&
+                userId == that.userId &&
+                carId == that.carId &&
+                status == that.status &&
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, userId, carId);
+        return Objects.hash(id, date, userId, carId, status);
     }
 }

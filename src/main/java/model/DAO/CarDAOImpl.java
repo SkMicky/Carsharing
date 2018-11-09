@@ -2,6 +2,9 @@ package model.DAO;
 
 import model.ConnectionPool;
 import model.entity.CarEntity;
+import model.entity.enumeration.CarStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +30,9 @@ public class CarDAOImpl implements CarDAO {
     private final String GET_CAR_BY_STATUS = "SELECT CAR.CAR_ID, CAR.CAR_NAME, CAR.CAR_GOSNo, " +
             "CAR.CAR_COLOR, CAR.CAR_STATUS FROM CAR WHERE CAR_STATUS = ?";
 
+    private final String GET_FROM_ORDER_BY_USER= "SELECT `ORDER`.CAR_ID FROM `ORDER` " +
+            "LEFT JOIN CAR ON `ORDER`.CAR_ID = CAR.CAR_ID WHERE `ORDER`.USER_ID = ?";
+
     private final String CHANGE_CAR_STATUS = "UPDATE CAR SET CAR_STATUS = ? WHERE CAR_ID = ?";
 
     private final String ADD_CAR = "INSERT INTO CAR(CAR_NAME, CAR_GOSNo, CAR_COLOR, CAR_STATUS) VALUES(?,?,?,?)";
@@ -34,41 +40,37 @@ public class CarDAOImpl implements CarDAO {
     private final String UPDATE_CAR = "UPDATE CAR SET CAR_NAME = ?, CAR_GOSNo = ?, CAR_COLOR = ?, " +
             "CAR_STATUS = ? WHERE CAR_ID = ?";
 
-    private final String DELETE_CAR = "DELETE FROM CAR WHERE CAR_ID LIKE ?";
+    private final String DELETE_CAR = "DELETE FROM CAR WHERE CAR_ID = ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
+    private static final Logger LOGGER = LogManager.getLogger(CarDAOImpl.class.getName());
 
-    private CarEntity getFromDB(ResultSet resultSet){
+
+    private CarEntity getFromDB(ResultSet resultSet) throws SQLException{
         CarEntity car = new CarEntity();
-        try{
-            while(resultSet.next()){
-                car.setId(resultSet.getLong("CAR_ID"));
-                car.setName(resultSet.getString("CAR_NAME"));
-                car.setGosNo(resultSet.getString("CAR_GOSNo"));
-                car.setColor(resultSet.getString("CAR_COLOR"));
-                car.setStatus(resultSet.getInt("CAR_STATUS"));
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        car.setId(resultSet.getLong("CAR_ID"));
+        car.setName(resultSet.getString("CAR_NAME"));
+        car.setGosNo(resultSet.getString("CAR_GOSNo"));
+        car.setColor(resultSet.getString("CAR_COLOR"));
+        car.setStatus(CarStatus.getCarStatus(resultSet.getInt("CAR_STATUS")));
         return car;
     }
 
-    private void saveToDB(String sql){
-        CarEntity car = new CarEntity();
+    private void saveToDB(String sql, CarEntity car){
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, car.getName());
             preparedStatement.setString(2, car.getGosNo());
             preparedStatement.setString(3, car.getColor());
-            preparedStatement.setInt(4, car.getStatus());
+            preparedStatement.setInt(4, car.getStatus().getId());
             preparedStatement.execute();
         } catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
     }
 
     @Override
@@ -82,28 +84,30 @@ public class CarDAOImpl implements CarDAO {
                 cars.add(getFromDB(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        System.out.println(cars);
         return cars;
     }
 
     @Override
-    public CarEntity getById(Long id) {
+    public CarEntity getById(long id) {
         CarEntity car = new CarEntity();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
             preparedStatement.setLong(1, id);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                car = getFromDB(resultSet);
+                while(resultSet.next()) {
+                    car = getFromDB(resultSet);
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        System.out.println(car);
         return car;
     }
 
@@ -115,15 +119,15 @@ public class CarDAOImpl implements CarDAO {
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
             preparedStatement.setString(1, color);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
+                while(resultSet.next()) {
                     cars.add(getFromDB(resultSet));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        System.out.println(cars);
         return cars;
     }
 
@@ -135,74 +139,103 @@ public class CarDAOImpl implements CarDAO {
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
             preparedStatement.setString(1, gosNo);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                car = getFromDB(resultSet);
+                while(resultSet.next()) {
+                    car = getFromDB(resultSet);
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        System.out.println(car);
         return car;
     }
 
     @Override
     public List<CarEntity> getByStatus(int status){
-        CarEntity car;
         List<CarEntity> cars = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_STATUS)){
             preparedStatement.setInt(1, status);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    car = getFromDB(resultSet);
-                    cars.add(car);
+                while(resultSet.next()) {
+                    cars.add(getFromDB(resultSet));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        System.out.println(cars);
         return cars;
     }
 
     @Override
-    public void changeStatus(long carId, int status){
+    public CarEntity getFromOrder(long userId){
+        Connection connection = connectionPool.getConnection();
+        CarEntity car = new CarEntity();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_FROM_ORDER_BY_USER)){
+            preparedStatement.setLong(1, userId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()) {
+                    car.setId(resultSet.getLong("CAR_ID"));
+                }
+                car = getById(car.getId());
+            }
+        } catch (SQLException e){
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
+        }
+        return car;
+    }
+
+    @Override
+    public void changeStatus(int status, long carId){
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_CAR_STATUS)){
-            preparedStatement.setLong(1, carId);
-            preparedStatement.setInt(2, status);
+            preparedStatement.setInt(1, status);
+            preparedStatement.setLong(2, carId);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
     }
 
     @Override
     public void saveOrUpdate(CarEntity carEntity) {
         if(carEntity.getId() == 0) {
-            saveToDB(ADD_CAR);
+            saveToDB(ADD_CAR, carEntity);
         } else {
-            saveToDB(UPDATE_CAR);
+            Connection connection = connectionPool.getConnection();
+            try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CAR)){
+                preparedStatement.setString(1, carEntity.getName());
+                preparedStatement.setString(2, carEntity.getGosNo());
+                preparedStatement.setString(3, carEntity.getColor());
+                preparedStatement.setInt(4, carEntity.getStatus().getId());
+                preparedStatement.setLong(5, carEntity.getId());
+                preparedStatement.execute();
+            } catch(SQLException e){
+                LOGGER.error(e);
+            } finally{
+                connectionPool.putBackConnection(connection);
+            }
         }
     }
     @Override
-    public void remove(Long id) {
+    public void remove(long id) {
         Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CAR)){
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-    }
-
-    public static void main(String[] args) {
-        CarDAOImpl carDAO = new CarDAOImpl();
-        carDAO.getAll();
     }
 }

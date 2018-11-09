@@ -5,6 +5,7 @@ import model.DAO.UserDAOImpl;
 import model.action.Action;
 import model.entity.CarEntity;
 import model.entity.UserEntity;
+import model.entity.enumeration.CarStatus;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -22,10 +23,8 @@ public class ShowFreeCars implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
         CarDAOImpl carDAO = new CarDAOImpl();
-        List<CarEntity> listCars = new ArrayList<>();
-        listCars.add(carDAO.getByStatus(2));
-        HttpSession session = request.getSession();
-        session.setAttribute("cars", listCars);
-        return "/view/listFreeCars.jsp";
+        List<CarEntity> listCars = carDAO.getByStatus(CarStatus.IS_FREE.getId());
+        request.setAttribute("cars", listCars);
+        return "/view/jsp/show/listFreeCars.jsp";
     }
 }

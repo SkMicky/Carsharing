@@ -9,7 +9,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Carsharing Web App</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="/view/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/view/css/main.css">
   </head>
   <body>
     <header class="header">
@@ -26,8 +27,8 @@
             </nav>
         </div>
         <div class="login">
-            <a href="view/authorization.jsp">Вход</a> <span>или</span>
-            <a href="view/registration.jsp">Регистрация</a>
+            <a href="view/jsp/authorization.jsp">Вход</a> <span>или</span>
+            <a href="view/jsp/registration.jsp">Регистрация</a>
         </div>
     </header>
     <div class="main">
@@ -38,13 +39,13 @@
                 <p class="baner-price">от 1500 тг/час</p>
             </div>
             <div class="poster">
-                <img class="poster-img" src="images/voditel.jpg" alt="Водитель в машине">
+                <img class="poster-img" src="/view/images/voditel.jpg" alt="Водитель в машине">
             </div>
         </div>
         <div class="about">
             <h2 class="about-title"><a name="about">Немного об аренде авто</a></h2>
             <div class="description-item">
-                <img class="item-img" src="images/item1.svg" alt="Выгода">
+                <img class="item-img" src="/view/images/item1.svg" alt="Выгода">
                 <div class="specification">
                     <p class="description-title">Всегда выгодно</p>
                     <p class="description-text">Начните пользоваться нашим сервисом и
@@ -52,7 +53,7 @@
                 </div>
             </div>
             <div class="description-item">
-                <img class="item-img" src="images/item2.svg" alt="Мобильность">
+                <img class="item-img" src="/view/images/item2.svg" alt="Мобильность">
                 <div class="specification">
                     <p class="description-title">Мобильность</p>
                     <p class="description-text">Управляйте своим временем вместе с нами.
@@ -60,55 +61,37 @@
                 </div>
             </div>
             <div class="description-item">
-                <img class="item-img" src="images/item3.svg" alt="Все включено">
+                <img class="item-img" src="/view/images/item3.svg" alt="Все включено">
                 <div class="specification">
                     <p class="description-title">Все включено</p>
                     <p class="description-text">Расходы на бензин, мойку и парковку мы берем на себя</p>
                 </div>
             </div>
             <div class="description-item">
-                <img class="item-img" src="images/item4.svg" alt="Комфорт">
+                <img class="item-img" src="/view/images/item4.svg" alt="Комфорт">
                 <div class="specification">
                     <p class="description-title">Комфортнее чем автобус или такси</p>
                     <p class="description-text">Все удобства личного авто для Вас</p>
                 </div>
             </div>
         </div>
-        <img class="general-car" src="images/car.png" alt="Машина">
+        <img class="general-car" src="/view/images/car.png" alt="Машина">
         <div class="cars">
             <h1 class="cars-heading"><a name="car">Машины:</a></h1>
             <div class="car-info">
-                <img class="car-image" src="images/rio.png" alt="kia">
+                <img class="car-image" src="/view/images/rio.png" alt="kia">
                 <p class="car-title">Kia</p>
             </div>
             <div class="car-info">
-                <img class="car-image" src="images/priora.png" alt="Lada priora">
+                <img class="car-image" src="/view/images/priora.png" alt="Lada priora">
                 <p class="car-title">Lada</p>
             </div>
             <div class="car-info">
-                <img class="car-image" src="images/hyundai.png" alt="Hyundai">
+                <img class="car-image" src="/view/images/hyundai.png" alt="Hyundai">
                 <p class="car-title">Hyundai</p>
             </div>
         </div>
+        <c:import url="view/jsp/footer.jsp" />
     </div>
-    <footer class="footer">
-        <div class="footer-logo"><h2>Carsharing</h2></div>
-        <div class="footer-menu">
-            <nav class="footer-nav">
-                <ul class="footer-list">
-                    <li class="footer-item"><a href="index.jsp">Главная</a></li>
-                    <li class="footer-item"><a href="#car">Машины</a></li>
-                    <li class="footer-item"><a href="#about">О нас</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="footer-contacts">
-            <h4 class="phone">Контакты:</h4>
-            <span class="phone-number">87715284382</span>
-        </div>
-        <div class="copyright">
-            <h5>Carsharing. Все права защищены!</h5>
-        </div>
-    </footer>
   </body>
 </html>

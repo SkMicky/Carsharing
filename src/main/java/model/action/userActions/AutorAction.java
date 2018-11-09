@@ -4,6 +4,9 @@ import model.DAO.UserDAOImpl;
 import model.action.Action;
 import model.action.Encryptor;
 import model.entity.UserEntity;
+import model.entity.enumeration.UserRole;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -12,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 public class AutorAction implements Action {
+
+    private static final Logger LOGGER = LogManager.getLogger(AutorAction.class.getName());
 
     private UserEntity getUser(String login) {
         UserDAOImpl userDAO = new UserDAOImpl();
@@ -32,18 +38,20 @@ public class AutorAction implements Action {
         if (validator.validateLogin(login) && validator.validatePassword(password)) {
             if (checkLoginAndPassword(login, password)) {
                 UserEntity user = getUser(login);
-                httpSession.setAttribute("User", user);
-                view = "/view/UserPage.jsp";
+                httpSession.setAttribute("authorizedUser", user);
+                if(user.getRole() == UserRole.ADMIN){
+                    view ="/view/jsp/adminPage.jsp";
+                } else{
+                    view = "/view/jsp/userPage.jsp";
+                }
             } else {
                 request.setAttribute("FalseLoginOrPassword","Неверный логин или пароль");
-                view = "/view/Error.jsp";
-                System.out.println("Неверный логин или пароль");
+                view = "/view/jsp/error.jsp";
             }
         }
         else {
             request.setAttribute("IncorrectLoginOrPassword","Неккоректные данные");
-            view="/view/Error.jsp";
-            System.out.println("Некорректные данные");
+            view="/view/jsp/error.jsp";
         }
         return view;
     }
@@ -60,7 +68,7 @@ public class AutorAction implements Action {
                 flag = false;
             }
         } catch(LoginException | NoSuchAlgorithmException e){
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return flag;
     }

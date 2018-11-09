@@ -4,6 +4,7 @@ import model.DAO.UserDAOImpl;
 import model.action.Action;
 import model.action.Encryptor;
 import model.entity.UserEntity;
+import model.entity.enumeration.UserRole;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -43,18 +44,16 @@ public class RegistrationAction implements Action {
                doRegistration(firstName, lastName, birthday, phoneNumber, email, iin,
                     address, driverLicense, login, password);
                 HttpSession httpSession=request.getSession();
-                httpSession.setAttribute("User",getInform(login));
+                httpSession.setAttribute("authorizedUser",getInform(login));
                 request.setAttribute("Succes","Вы зарегистрированы");
-                view = "/view/Success.jsp";
+                view = "/view/jsp/success.jsp";
             } else {
-                request.setAttribute("RegistrationError", "Такой логин уже есть");
-                System.out.println("Такой логин уже есть");
-                view = "/view/Error.jsp";
+                request.setAttribute("error", "Такой логин уже есть");
+                view = "/view/jsp/error.jsp";
             }
         } else {
             request.setAttribute("IncorrectData","Вы ввели некорректные данные");
-            System.out.println("Некорректные данные");
-            view = "/view/Error.jsp";
+            view = "/view/jsp/error.jsp";
           }
         return view;
     }
@@ -87,7 +86,7 @@ public class RegistrationAction implements Action {
         user.setDriverLicense(driverLicense);
         user.setLogin(login);
         user.setPassword(hashPassword);
-        user.setRole(2);
+        user.setRole(UserRole.CLIENT);
         userDAO.saveOrUpdate(user);
     }
 }

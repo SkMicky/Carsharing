@@ -1,0 +1,79 @@
+body, div{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    position: relative;
+    padding: 0 2%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 1;
+}
+
+.menu-bar{
+    flex:1;
+    max-width: 550px;
+}
+
+.list{
+    display:grid;
+    list-style-type: none;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.header-link{
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    padding:15px 0;
+}
+
+.header-link:hover{
+    color: darkred;
+}
+
+.item{
+    align-self: center;
+    justify-self: center;
+    font-weight: bold;
+}
+
+.item:hover{
+    color: darkred;
+}
+
+.submenu {
+    background: #273037;
+    position: absolute;
+    margin: 0 auto;
+    top: 100%;
+    z-index: 5;
+    width: 180px;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: .5s ease-in-out;
+}
+.submenu a {
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.submenu li:last-child a { border-bottom: none; }
+.list > li:hover .submenu {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.login a{
+    color:#000000;
+}

@@ -1,13 +1,26 @@
 package model.entity;
 
+import model.entity.enumeration.CarStatus;
+
 import java.util.Objects;
 
 public class CarEntity extends AbstractEntity {
 
+    private long id;
     private String name;
     private String gosNo;
     private String color;
-    private int status;
+    private CarStatus status;
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id){
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -33,11 +46,11 @@ public class CarEntity extends AbstractEntity {
         this.color = color;
     }
 
-    public int getStatus() {
+    public CarStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(CarStatus status) {
         this.status = status;
     }
 

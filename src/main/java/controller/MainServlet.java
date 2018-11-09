@@ -1,8 +1,9 @@
 package controller;
 
 import model.action.Action;
-import model.action.ActionFactory;
 import model.action.URIAction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -14,16 +15,16 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class MainServlet extends HttpServlet {
+    private static final Logger LOGGER = LogManager.getLogger(MainServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Action action = new URIAction().getAction(request);
-        System.out.println(new URIAction().getAction(request));
         try {
             String view = action.execute(request, response);
             request.getRequestDispatcher(view).forward(request, response);
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | LoginException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
     }
 

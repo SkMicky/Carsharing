@@ -1,86 +1,66 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.AbstractEntity;
 import model.entity.OrderEntity;
+import model.entity.enumeration.OrderStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
 
-    private final String GET_ALL_ORDERS = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
-            "FROM ORDER AND SELECT " +
-            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
-            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID";
+    private final String GET_ALL_ORDERS = "SELECT ORDER_ID, ORDER_DATE, USER_ID, CAR_ID, ORDER_STATUS FROM `ORDER`";
 
-    private final String GET_ORDER_BY_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
-            "FROM ORDER AND SELECT " +
-            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
-            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
-            "WHERE ORDER_ID LIKE ?";
+    private final String GET_ORDER_BY_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, CAR_ID, ORDER_STATUS " +
+            "FROM `ORDER` WHERE ORDER_ID = ?";
 
-    private final String GET_ORDER_BY_USER_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
-            "FROM ORDER AND SELECT " +
-            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
-            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
-            "WHERE USER_ID LIKE ?";
+    private final String GET_ORDER_BY_USER_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, CAR_ID, ORDER_STATUS " +
+            "FROM `ORDER` WHERE USER_ID = ?";
 
-    private final String GET_ORDER_BY_CAR_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, TOTAL_COST,  " +
-            "FROM ORDER AND SELECT " +
-            "ORDER_DETAIL.CAR_ID, FROM ORDER_ID " +
-            "LEFT JOIN ORDER ON USER.USER_ID = ORDER.USER_ID " +
-            "LEFT JOIN ORDER_DETAIL ON CAR.CAR_ID = ORDER_DETAIL.CAR_ID" +
-            "WHERE USER_ID LIKE ?";
+    private final String GET_ORDER_BY_CAR_ID = "SELECT ORDER_ID, ORDER_DATE, USER_ID, CAR_ID, ORDER_STATUS " +
+            "FROM `ORDER` WHERE CAR_ID = ?";
 
-    private final String ADD_ORDER = "INSERT INTO 'ORDER'('ORDER_DATE', 'USER_ID', 'TOTAL_COST') VALUES(?,?,?)" +
-            "AND INSERT INTO 'ORDER_DETAIL' ('CAR_ID') VALUES(?)";
+    private final String ADD_ORDER = "INSERT INTO `ORDER`(ORDER_DATE, USER_ID, CAR_ID, ORDER_STATUS) VALUES(?, ?, ?, ?)";
 
-    private final String UPDATE_ORDER = "UPDATE ORDER SET ORDER_ID = ?, ORDER_DATE = ?, USER_ID = ?, TOTAL_COST = ?" +
-            "UPDATE ORDER_DETAIL SET ORDER_DETAIL_ID = ?, ORDER_ID = ?, CAR_ID = ?" +
-            "WHERE ORDER_ID = ?";
+    private final String UPDATE_ORDER = "UPDATE `ORDER` SET ORDER_DATE = ?, USER_ID = ?, CAR_ID = ? WHERE ORDER_ID = ?";
 
-    private final String DELETE_ORDER = "DELETE FROM ORDER WHERE ORDER_ID LIKE ?";
+    private final String UPDATE_STATUS = "UPDATE `ORDER` SET ORDER_STATUS =? WHERE ORDER_ID = ?";
+
+    private final String DELETE_ORDER = "DELETE FROM `ORDER` WHERE ORDER_ID LIKE ?";
+
+    private final String DELETE_ORDERS_BY_USER_ID = "DELETE FROM `ORDER` WHERE USER_ID = ?";
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-    private OrderEntity getFromDB(ResultSet resultSet) {
+    private static final Logger LOGGER = LogManager.getLogger(OrderDAOImpl.class.getName());
+
+    private OrderEntity getFromDB(ResultSet resultSet) throws SQLException {
         OrderEntity order = new OrderEntity();
-        try{
-            while(resultSet.next()){
-                order.setId(resultSet.getLong("ORDER_ID"));
-                order.setDate(resultSet.getDate("ORDER_DATE"));
-                order.setUserId(resultSet.getLong("USER_ID"));
-                order.setCarId(resultSet.getLong("CAR_ID"));
-            }
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
+        order.setId(resultSet.getLong("ORDER_ID"));
+        order.setDate(resultSet.getTimestamp("ORDER_DATE"));
+        order.setUserId(resultSet.getLong("USER_ID"));
+        order.setCarId(resultSet.getLong("CAR_ID"));
+        order.setStatus(OrderStatus.getOrderStatus(resultSet.getInt("ORDER_STATUS")));
         return order;
     }
 
-    private void saveToDB(String sql) {
-        OrderEntity order = new OrderEntity();
+    private void saveToDB(String sql, OrderEntity order) {
         Connection connection = connectionPool.getConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, order.getId());
-            preparedStatement.setDate(2, (Date) order.getDate());
-            preparedStatement.setLong(3, order.getUserId());
-            preparedStatement.setLong(6, order.getCarId());
-            preparedStatement.executeUpdate();
+            preparedStatement.setTimestamp(1, order.getDate());
+            preparedStatement.setLong(2, order.getUserId());
+            preparedStatement.setLong(3, order.getCarId());
+            preparedStatement.setInt(4, order.getStatus().getId());
+            preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
     }
 
     @Override
@@ -90,85 +70,124 @@ public class OrderDAOImpl implements OrderDAO {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_ORDERS);
             ResultSet resultSet = preparedStatement.executeQuery()) {
-            while(resultSet.next()){
+            while(resultSet.next()) {
                 orders.add(getFromDB(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
         return orders;
     }
 
     @Override
-    public OrderEntity getById(Long orderId){
+    public OrderEntity getById(long orderId){
         OrderEntity order = new OrderEntity();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_ID)){
             preparedStatement.setLong(1, orderId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                order = getFromDB(resultSet);
+                while(resultSet.next()) {
+                    order = getFromDB(resultSet);
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
         return order;
     }
 
     @Override
-    public OrderEntity getByUserId(Long userId) {
-        OrderEntity order = new OrderEntity();
+    public List<OrderEntity> getByUserId(long userId) {
+        List<OrderEntity> orders = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_USER_ID)){
             preparedStatement.setLong(1, userId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                order = getFromDB(resultSet);
+                while(resultSet.next()) {
+                    orders.add(getFromDB(resultSet));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        return order;
+        return orders;
     }
 
     @Override
-    public OrderEntity getByCarId(Long carId) {
-        OrderEntity order = new OrderEntity();
+    public List<OrderEntity> getByCarId(long carId) {
+        List<OrderEntity> orders = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_CAR_ID)){
             preparedStatement.setLong(1, carId);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                order = getFromDB(resultSet);
+                while(resultSet.next()) {
+                    orders.add(getFromDB(resultSet));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
-        return order;
+        return orders;
     }
 
     @Override
     public void saveOrUpdate(OrderEntity orderEntity) {
         if(orderEntity.getId() == 0) {
-            saveToDB(ADD_ORDER);
+            saveToDB(ADD_ORDER, orderEntity);
         } else {
-            saveToDB(UPDATE_ORDER);
+            saveToDB(UPDATE_ORDER, orderEntity);
         }
     }
 
     @Override
-    public void remove(Long id) {
+    public void remove(long id) {
         Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER)){
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
         }
-        connectionPool.putBackConnection(connection);
+    }
+
+    @Override
+    public void removeByUserId(long userId) {
+        Connection connection = connectionPool.getConnection();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDERS_BY_USER_ID)){
+            preparedStatement.setLong(1, userId);
+            preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
+        }
+    }
+
+    @Override
+    public void changeStatus(int status, long orderId){
+        Connection connection = connectionPool.getConnection();
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STATUS)){
+            preparedStatement.setInt(1, status);
+            preparedStatement.setLong(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            LOGGER.error(e);
+        } finally{
+            connectionPool.putBackConnection(connection);
+        }
     }
 }

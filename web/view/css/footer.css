@@ -1,0 +1,53 @@
+body, div{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Montserrat,sans-serif;
+    background-image: url("../images/footer_bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.footer{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 40px;
+    align-items: center;
+}
+
+.footer-logo{
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-menu{
+    color: white;
+}
+
+.footer-item a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-contacts{
+    color: white;
+}
+
+.footer-contacts .phone{
+    margin: 0;
+    margin-bottom: 12px;
+}
+
+.copyright{
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.copyright h5{
+    color: white;
+    font-weight: 100;
+}

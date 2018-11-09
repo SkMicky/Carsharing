@@ -1,0 +1,20 @@
+@font-face {
+    font-family: FontAwesome;
+    src: url("https://fontawesome.com");
+}
+
+table{
+    margin: 200px auto;
+}
+
+.edit:before{
+    content: '\f044';
+    font-family: Font Awesome;
+    color: mediumblue;
+}
+
+.delete:before{
+    content: '\f2d4';
+    font-family: Font Awesome;
+    color: mediumblue;
+}
