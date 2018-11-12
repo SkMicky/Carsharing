@@ -1,11 +1,13 @@
 package model.action.userActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
+import model.DAO.OrderDAO;
 import model.DAO.OrderDAOImpl;
 import model.action.Action;
-import model.entity.CarEntity;
-import model.entity.OrderEntity;
-import model.entity.UserEntity;
+import model.entity.Car;
+import model.entity.Order;
+import model.entity.User;
 import model.entity.enumeration.CarStatus;
 import model.entity.enumeration.OrderStatus;
 
@@ -25,21 +27,19 @@ public class CarReturner implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
         HttpSession httpSession = request.getSession();
-        UserEntity user = (UserEntity) httpSession.getAttribute("authorizedUser");
+        User user = (User) httpSession.getAttribute("authorizedUser");
         String view;
         if(user != null) {
             long userId = user.getId();
-            OrderDAOImpl orderDAO = new OrderDAOImpl();
-            List<OrderEntity> listOrders = orderDAO.getByUserId(userId);
+            OrderDAO orderDAO = new OrderDAOImpl();
+            List<Order> listOrders = orderDAO.getByUserId(userId);
             long totalTime = getTotalTime(listOrders);
             request.setAttribute("totalTime", totalTime);
             request.setAttribute("orders", listOrders);
             changeCarStatus(userId);
-            for(OrderEntity order : listOrders){
-                long orderId = order.getId();
-                long idUser = order.getUserId();
-                if(idUser == userId){
-                    orderDAO.changeStatus(OrderStatus.IS_DONE.getId(), orderId);
+            for(Order order : listOrders){
+                if(order.getUserId() == userId){
+                    orderDAO.changeStatus(OrderStatus.IS_DONE.getId(), order.getId());
                 }
             }
             request.setAttribute("success", "Машина успешно возвращена");
@@ -52,14 +52,13 @@ public class CarReturner implements Action {
     }
 
     private void changeCarStatus(long userId){
-        CarDAOImpl carDAO = new CarDAOImpl();
-        CarEntity car = carDAO.getFromOrder(userId);
-        long carId = car.getId();
-        carDAO.changeStatus(CarStatus.IS_FREE.getId(), carId);
+        CarDAO carDAO = new CarDAOImpl();
+        Car car = carDAO.getFromOrder(userId);
+        carDAO.changeStatus(CarStatus.IS_FREE.getId(), car.getId());
     }
 
-    private long getTotalTime(List<OrderEntity> listOrders){
-        OrderEntity order = listOrders.get(listOrders.size() - 1); //Get the Last element of List
+    private long getTotalTime(List<Order> listOrders){
+        Order order = listOrders.get(listOrders.size() - 1); //Get the Last element of List
         return (System.currentTimeMillis() - order.getDate().getTime())/60000; //Convert Millis to Minute
     }
 }

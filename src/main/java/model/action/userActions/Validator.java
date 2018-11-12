@@ -30,10 +30,8 @@ public class Validator {
     boolean validatePassword(String password){
         if(!password.isEmpty() && password.length() > 8){
             flag = true;
-            System.out.println("Success");
         } else {
             flag = false;
-            System.out.println("Fail");
         }
         return flag;
     }

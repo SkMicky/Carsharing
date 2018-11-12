@@ -1,8 +1,9 @@
 package model.action.adminActions.clientActions;
 
+import model.DAO.UserDAO;
 import model.DAO.UserDAOImpl;
 import model.action.Action;
-import model.entity.UserEntity;
+import model.entity.User;
 import model.entity.enumeration.UserRole;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,8 @@ public class ShowAllUsers implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDAOImpl userDAO = new UserDAOImpl();
-        List<UserEntity> listUsers = userDAO.getByRole(UserRole.CLIENT.getId());
+        UserDAO userDAO = new UserDAOImpl();
+        List<User> listUsers = userDAO.getByRole(UserRole.CLIENT.getId());
         request.setAttribute("users", listUsers);
         return "/view/jsp/show/showAllUsers.jsp";
     }

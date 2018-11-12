@@ -1,10 +1,12 @@
 package model.action.userActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
+import model.DAO.OrderDAO;
 import model.DAO.OrderDAOImpl;
 import model.action.Action;
-import model.entity.OrderEntity;
-import model.entity.UserEntity;
+import model.entity.Order;
+import model.entity.User;
 import model.entity.enumeration.CarStatus;
 import model.entity.enumeration.OrderStatus;
 
@@ -20,12 +22,10 @@ public class BookingCar implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession();
-        UserEntity user = (UserEntity) httpSession.getAttribute("authorizedUser");
+        User user = (User) httpSession.getAttribute("authorizedUser");
         String view;
         if(user != null){
-            long carId = Long.parseLong(request.getParameter("carId"));
-            long userId = user.getId();
-            bookCar(carId, userId);
+            bookCar(Long.parseLong(request.getParameter("carId")), user.getId());
             view = "/view/jsp/userPage.jsp";
         }else{
             view = "/view/jsp/authorization.jsp";
@@ -34,14 +34,14 @@ public class BookingCar implements Action {
     }
 
     private void bookCar(long carId, long userId){
-        OrderEntity order = new OrderEntity();
+        Order order = new Order();
         order.setCarId(carId);
         order.setUserId(userId);
         order.setDate(new Timestamp(System.currentTimeMillis()));
         order.setStatus(OrderStatus.IS_EXECUTING);
-        OrderDAOImpl orderDAO = new OrderDAOImpl();
+        OrderDAO orderDAO = new OrderDAOImpl();
         orderDAO.saveOrUpdate(order);
-        CarDAOImpl carDAO = new CarDAOImpl();
+        CarDAO carDAO = new CarDAOImpl();
         carDAO.changeStatus(CarStatus.IN_RENT.getId(), carId);
     }
 }

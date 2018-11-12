@@ -1,9 +1,10 @@
 package model.action.userActions;
 
+import model.DAO.UserDAO;
 import model.DAO.UserDAOImpl;
 import model.action.Action;
 import model.action.Encryptor;
-import model.entity.UserEntity;
+import model.entity.User;
 import model.entity.enumeration.UserRole;
 
 import javax.security.auth.login.LoginException;
@@ -18,9 +19,9 @@ import java.sql.SQLException;
 
 public class RegistrationAction implements Action {
 
-    private UserEntity getInform(String login) throws SQLException, ClassNotFoundException {
-        UserDAOImpl userDAO = new UserDAOImpl();
-        UserEntity user=userDAO.getByLogin(login);
+    private User getInform(String login) throws SQLException, ClassNotFoundException {
+        UserDAO userDAO = new UserDAOImpl();
+        User user=userDAO.getByLogin(login);
         return user;
     }
 
@@ -35,9 +36,9 @@ public class RegistrationAction implements Action {
         Date birthday = Date.valueOf(request.getParameter("birthDate"));
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
-        long iin = Long.parseLong(request.getParameter("iin"));
+        String iin = request.getParameter("iin");
         String address = request.getParameter("address");
-        long driverLicense = Long.parseLong(request.getParameter("driverLicense"));
+        String driverLicense = request.getParameter("driverLicense");
         String password = request.getParameter("password");
         if(validator.validateLogin(login) && validator.validatePassword(password) && validator.validateEmail(email)){
             if(checkUserDataBase(login)){
@@ -59,8 +60,8 @@ public class RegistrationAction implements Action {
     }
 
     private boolean checkUserDataBase(String login) throws SQLException, ClassNotFoundException {
-        UserDAOImpl userDAO=new UserDAOImpl();
-        UserEntity user = userDAO.getByLogin(login);
+        UserDAO userDAO=new UserDAOImpl();
+        User user = userDAO.getByLogin(login);
         boolean checkLogin=false;
         if (user.getLogin()==null){
             checkLogin=true;
@@ -69,19 +70,19 @@ public class RegistrationAction implements Action {
     }
 
     private void doRegistration(String firstName, String lastName, Date birthday,
-                             String phoneNumber, String email, long iin, String userAddress,
-                             long driverLicense, String login, String password)
+                             String phoneNumber, String email, String iin, String userAddress,
+                             String driverLicense, String login, String password)
                                 throws NoSuchAlgorithmException, LoginException {
         Encryptor encryptor = new Encryptor();
         String hashPassword = encryptor.getHashPassword(password);
-        UserDAOImpl userDAO = new UserDAOImpl();
-        UserEntity user = new UserEntity();
+        UserDAO userDAO = new UserDAOImpl();
+        User user = new User();
         user.setLastName(lastName);
         user.setFirstName(firstName);
         user.setBirthday(birthday);
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
-        user.setIIN(iin);
+        user.setIin(iin);
         user.setUserAddress(userAddress);
         user.setDriverLicense(driverLicense);
         user.setLogin(login);

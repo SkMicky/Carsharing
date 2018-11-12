@@ -1,9 +1,11 @@
 package model.action.adminActions.clientActions;
 
+import model.DAO.OrderDAO;
 import model.DAO.OrderDAOImpl;
+import model.DAO.UserDAO;
 import model.DAO.UserDAOImpl;
 import model.action.Action;
-import model.entity.OrderEntity;
+import model.entity.Order;
 import model.entity.enumeration.OrderStatus;
 
 import javax.security.auth.login.LoginException;
@@ -23,7 +25,7 @@ public class DeleteUser implements Action {
         String view;
         long userId = Long.parseLong(request.getParameter("userId"));
         if(deleteOrders(userId)) {
-            UserDAOImpl userDAO = new UserDAOImpl();
+            UserDAO userDAO = new UserDAOImpl();
             userDAO.remove(userId);
             request.setAttribute("success", "Пользователь успешно удалён");
             view = "/view/jsp/success.jsp";
@@ -35,10 +37,10 @@ public class DeleteUser implements Action {
     }
 
     private boolean deleteOrders(long userId){
-        OrderDAOImpl orderDAO = new OrderDAOImpl();
-        List<OrderEntity> listOrdersByUser = orderDAO.getByUserId(userId);
+        OrderDAO orderDAO = new OrderDAOImpl();
+        List<Order> listOrdersByUser = orderDAO.getByUserId(userId);
         boolean flag = false;
-        for (OrderEntity order: listOrdersByUser) {
+        for (Order order: listOrdersByUser) {
             OrderStatus orderStatus = order.getStatus();
             if(orderStatus == OrderStatus.IS_DONE){
                 orderDAO.removeByUserId(userId);

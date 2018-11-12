@@ -1,13 +1,13 @@
 package model.DAO;
 
-import model.entity.OrderEntity;
+import model.entity.Order;
 
 import java.util.List;
 
-interface OrderDAO extends AbstractDAO<OrderEntity> {
-    List<OrderEntity> getAll();
-    List<OrderEntity> getByUserId(long userId);
-    List<OrderEntity> getByCarId(long carId);
+public interface OrderDAO extends BaseDAO<Order> {
+    List<Order> getAll();
+    List<Order> getByUserId(long userId);
+    List<Order> getByCarId(long carId);
     void changeStatus(int status, long orderId);
     void removeByUserId(long userId);
 }

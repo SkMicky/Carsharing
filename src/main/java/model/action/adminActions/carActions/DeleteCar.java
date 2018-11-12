@@ -1,5 +1,6 @@
 package model.action.adminActions.carActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
 import model.action.Action;
 import model.entity.enumeration.CarStatus;
@@ -20,9 +21,8 @@ public class DeleteCar implements Action {
         String view;
         int carStatus = Integer.parseInt(request.getParameter("status"));
         if(carStatus == CarStatus.IS_FREE.getId()) {
-            CarDAOImpl carDAO = new CarDAOImpl();
-            long carId = Long.parseLong(request.getParameter("carId"));
-            carDAO.remove(carId);
+            CarDAO carDAO = new CarDAOImpl();
+            carDAO.remove(Long.parseLong(request.getParameter("carId")));
             request.setAttribute("success", "Машина успешно удалена");
             view = "/view/jsp/success.jsp";
         } else {

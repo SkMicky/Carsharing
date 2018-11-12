@@ -1,5 +1,6 @@
 package model.action.adminActions.carActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
 import model.action.Action;
 
@@ -15,9 +16,8 @@ import java.sql.SQLException;
 public class ShowCarById implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
-        long carId = Long.parseLong(request.getParameter("carId"));
-        CarDAOImpl carDAO = new CarDAOImpl();
-        request.setAttribute("car", carDAO.getById(carId));
+        CarDAO carDAO = new CarDAOImpl();
+        request.setAttribute("car", carDAO.getById(Long.parseLong(request.getParameter("carId"))));
         return "/view/jsp/show/showCarBy.jsp";
     }
 }

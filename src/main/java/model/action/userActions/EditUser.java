@@ -1,8 +1,9 @@
 package model.action.userActions;
 
+import model.DAO.UserDAO;
 import model.DAO.UserDAOImpl;
 import model.action.Action;
-import model.entity.UserEntity;
+import model.entity.User;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -22,16 +23,16 @@ public class EditUser implements Action {
         Validator validator = new Validator();
         String view;
         HttpSession httpSession = request.getSession();
-        UserEntity user = (UserEntity) httpSession.getAttribute("authorizedUser");
+        User user = (User) httpSession.getAttribute("authorizedUser");
         long userId = user.getId();
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         Date birthday = Date.valueOf(request.getParameter("birthDate"));
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
-        long iin = Long.parseLong(request.getParameter("iin"));
+        String iin = request.getParameter("iin");
         String address = request.getParameter("address");
-        long driverLicense = Long.parseLong(request.getParameter("driverLicense"));
+        String driverLicense = request.getParameter("driverLicense");
         String login = request.getParameter("login");
         if (validator.validateLogin(login) && validator.validateEmail(email)){
             doEdit(userId, lastName, firstName, birthday, phoneNumber, email, iin, address, driverLicense, login);
@@ -46,19 +47,19 @@ public class EditUser implements Action {
     }
 
     private void doEdit(long userId, String lastName, String firstName, Date birthday, String phoneNumber, String email,
-                        long iin, String address, long driverLicense, String login){
-        UserEntity user = new UserEntity();
+                        String iin, String address, String driverLicense, String login){
+        User user = new User();
         user.setId(userId);
         user.setLastName(lastName);
         user.setFirstName(firstName);
         user.setBirthday(birthday);
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
-        user.setIIN(iin);
+        user.setIin(iin);
         user.setUserAddress(address);
         user.setDriverLicense(driverLicense);
         user.setLogin(login);
-        UserDAOImpl userDAO = new UserDAOImpl();
+        UserDAO userDAO = new UserDAOImpl();
         userDAO.saveOrUpdate(user);
     }
 }

@@ -1,7 +1,8 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.CarEntity;
+import model.entity.BaseEntity;
+import model.entity.Car;
 import model.entity.enumeration.CarStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,8 +48,8 @@ public class CarDAOImpl implements CarDAO {
     private static final Logger LOGGER = LogManager.getLogger(CarDAOImpl.class.getName());
 
 
-    private CarEntity getFromDB(ResultSet resultSet) throws SQLException{
-        CarEntity car = new CarEntity();
+    private Car getFromDB(ResultSet resultSet) throws SQLException{
+        Car car = new Car();
         car.setId(resultSet.getLong("CAR_ID"));
         car.setName(resultSet.getString("CAR_NAME"));
         car.setGosNo(resultSet.getString("CAR_GOSNo"));
@@ -57,7 +58,7 @@ public class CarDAOImpl implements CarDAO {
         return car;
     }
 
-    private void saveToDB(String sql, CarEntity car){
+    private void saveToDB(String sql, Car car){
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -74,8 +75,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public List<CarEntity> getAll() {
-        List<CarEntity> cars = new ArrayList<>();
+    public List<Car> getAll() {
+        List<Car> cars = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CARS);
@@ -92,8 +93,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public CarEntity getById(long id) {
-        CarEntity car = new CarEntity();
+    public Car getById(long id) {
+        Car car = new Car();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
@@ -112,8 +113,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public List<CarEntity> getByColor(String color) {
-        List<CarEntity> cars = new ArrayList<>();
+    public List<Car> getByColor(String color) {
+        List<Car> cars = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
@@ -132,8 +133,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public CarEntity getByGosNo(String gosNo) {
-        CarEntity car = new CarEntity();
+    public Car getByGosNo(String gosNo) {
+        Car car = new Car();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_ID)){
@@ -152,8 +153,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public List<CarEntity> getByStatus(int status){
-        List<CarEntity> cars = new ArrayList<>();
+    public List<Car> getByStatus(int status){
+        List<Car> cars = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_CAR_BY_STATUS)){
@@ -172,9 +173,9 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public CarEntity getFromOrder(long userId){
+    public Car getFromOrder(long userId){
         Connection connection = connectionPool.getConnection();
-        CarEntity car = new CarEntity();
+        Car car = new Car();
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_FROM_ORDER_BY_USER)){
             preparedStatement.setLong(1, userId);
             try(ResultSet resultSet = preparedStatement.executeQuery()){
@@ -207,17 +208,17 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void saveOrUpdate(CarEntity carEntity) {
-        if(carEntity.getId() == 0) {
-            saveToDB(ADD_CAR, carEntity);
+    public void saveOrUpdate(Car car) {
+        if(car.getId() == 0) {
+            saveToDB(ADD_CAR, car);
         } else {
             Connection connection = connectionPool.getConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CAR)){
-                preparedStatement.setString(1, carEntity.getName());
-                preparedStatement.setString(2, carEntity.getGosNo());
-                preparedStatement.setString(3, carEntity.getColor());
-                preparedStatement.setInt(4, carEntity.getStatus().getId());
-                preparedStatement.setLong(5, carEntity.getId());
+                preparedStatement.setString(1, car.getName());
+                preparedStatement.setString(2, car.getGosNo());
+                preparedStatement.setString(3, car.getColor());
+                preparedStatement.setInt(4, car.getStatus().getId());
+                preparedStatement.setLong(5, car.getId());
                 preparedStatement.execute();
             } catch(SQLException e){
                 LOGGER.error(e);

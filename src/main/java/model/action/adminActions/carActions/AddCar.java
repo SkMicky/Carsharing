@@ -1,9 +1,10 @@
 package model.action.adminActions.carActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
 import model.action.Action;
 import model.action.userActions.Validator;
-import model.entity.CarEntity;
+import model.entity.Car;
 import model.entity.enumeration.CarStatus;
 
 import javax.security.auth.login.LoginException;
@@ -35,8 +36,8 @@ public class AddCar implements Action {
     }
 
     private void addCar(String name, String gosNo, String color){
-        CarDAOImpl carDAO = new CarDAOImpl();
-        CarEntity car = new CarEntity();
+        CarDAO carDAO = new CarDAOImpl();
+        Car car = new Car();
         car.setName(name);
         car.setGosNo(gosNo);
         car.setColor(color);

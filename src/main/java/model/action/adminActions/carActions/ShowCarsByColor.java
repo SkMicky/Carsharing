@@ -1,8 +1,9 @@
 package model.action.adminActions.carActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
 import model.action.Action;
-import model.entity.CarEntity;
+import model.entity.Car;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -17,9 +18,8 @@ import java.util.List;
 public class ShowCarsByColor implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
-        String color = request.getParameter("color");
-        CarDAOImpl carDAO = new CarDAOImpl();
-        List<CarEntity> listCars = carDAO.getByColor(color);
+        CarDAO carDAO = new CarDAOImpl();
+        List<Car> listCars = carDAO.getByColor(request.getParameter("color"));
         request.setAttribute("car", listCars);
         return "/view/jsp/show/showAllCars.jsp";
     }

@@ -1,7 +1,7 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.UserEntity;
+import model.entity.User;
 import model.entity.enumeration.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,8 +68,8 @@ public class UserDAOImpl implements UserDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(UserDAOImpl.class.getName());
 
-    private UserEntity getFromDB(ResultSet resultSet) throws SQLException {
-        UserEntity user = new UserEntity();
+    private User getFromDB(ResultSet resultSet) throws SQLException {
+        User user = new User();
         user.setId(resultSet.getLong("USER_ID"));
         user.setFirstName(resultSet.getString("USER_FIRSTNAME"));
         user.setLastName(resultSet.getString("USER_LASTNAME"));
@@ -85,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    private void saveToDB(String sql, UserEntity user){
+    private void saveToDB(String sql, User user){
         Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, user.getLastName());
@@ -108,8 +108,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserEntity getById(long id) {
-        UserEntity user = new UserEntity();
+    public User getById(long id) {
+        User user = new User();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID)){
@@ -128,8 +128,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<UserEntity> getByRole(int role) {
-        List<UserEntity> users = new ArrayList<>();
+    public List<User> getByRole(int role) {
+        List<User> users = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ROLE)){
@@ -148,8 +148,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserEntity getByLogin(String login) {
-        UserEntity user = new UserEntity();
+    public User getByLogin(String login) {
+        User user = new User();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN)){
@@ -167,8 +167,8 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    public UserEntity searchInDataBase(String login,String password){
-        UserEntity user = new UserEntity();
+    public User searchInDataBase(String login, String password){
+        User user = new User();
         Connection connection = connectionPool.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_AND_PASSWORD)) {
             preparedStatement.setString(1, login);
@@ -187,22 +187,22 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void saveOrUpdate(UserEntity userEntity) {
-        if(userEntity.getId() == 0) {
-            saveToDB(ADD_USER, userEntity);
+    public void saveOrUpdate(User user) {
+        if(user.getId() == 0) {
+            saveToDB(ADD_USER, user);
         } else {
             Connection connection = connectionPool.getConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)){
-                preparedStatement.setString(1, userEntity.getLastName());
-                preparedStatement.setString(2, userEntity.getFirstName());
-                preparedStatement.setDate(3, userEntity.getBirthday());
-                preparedStatement.setString(4, userEntity.getPhoneNumber());
-                preparedStatement.setString(5, userEntity.getEmail());
-                preparedStatement.setLong(6, userEntity.getIIN());
-                preparedStatement.setString(7, userEntity.getUserAddress());
-                preparedStatement.setLong(8, userEntity.getDriverLicense());
-                preparedStatement.setString(9, userEntity.getLogin());
-                preparedStatement.setLong(10, userEntity.getId());
+                preparedStatement.setString(1, user.getLastName());
+                preparedStatement.setString(2, user.getFirstName());
+                preparedStatement.setDate(3, user.getBirthday());
+                preparedStatement.setString(4, user.getPhoneNumber());
+                preparedStatement.setString(5, user.getEmail());
+                preparedStatement.setLong(6, user.getIIN());
+                preparedStatement.setString(7, user.getUserAddress());
+                preparedStatement.setLong(8, user.getDriverLicense());
+                preparedStatement.setString(9, user.getLogin());
+                preparedStatement.setLong(10, user.getId());
                 preparedStatement.execute();
             } catch (SQLException e){
                 LOGGER.error(e);

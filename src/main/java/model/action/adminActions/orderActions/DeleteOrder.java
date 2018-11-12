@@ -1,5 +1,6 @@
 package model.action.adminActions.orderActions;
 
+import model.DAO.OrderDAO;
 import model.DAO.OrderDAOImpl;
 import model.action.Action;
 import model.entity.enumeration.OrderStatus;
@@ -18,11 +19,10 @@ public class DeleteOrder implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
         String view;
-        long orderId = Long.parseLong(request.getParameter("orderId"));
         int orderStatus = Integer.parseInt(request.getParameter("orderStatus"));
         if(orderStatus == OrderStatus.IS_DONE.getId()){
-            OrderDAOImpl orderDAO = new OrderDAOImpl();
-            orderDAO.remove(orderId);
+            OrderDAO orderDAO = new OrderDAOImpl();
+            orderDAO.remove(Long.parseLong(request.getParameter("orderId")));
             request.setAttribute("success", "Заказ успешно удалён");
             view = "/view/jsp/success.jsp";
         } else {

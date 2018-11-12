@@ -1,35 +1,30 @@
 package model.entity;
 
-import java.sql.Date;
+import model.entity.enumeration.UserRole;
 
-public class User {
-    private int userID;
-    private String firstName;
+import java.sql.Date;
+import java.util.Objects;
+
+public class User extends BaseEntity {
+
     private String lastName;
+    private String firstName;
     private Date birthday;
     private String phoneNumber;
     private String email;
-    private int IIN;
+    private String iin;
     private String userAddress;
-    private int driverLicense;
+    private String driverLicense;
     private String login;
     private String password;
-    private Role role;
+    private UserRole role;
 
-    public int getUserID() {
-        return userID;
+    public long getId() {
+        return id;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getLastName() {
@@ -38,6 +33,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public Date getBirthday() {
@@ -64,12 +67,12 @@ public class User {
         this.email = email;
     }
 
-    public int getIIN() {
-        return IIN;
+    public String getIin() {
+        return iin;
     }
 
-    public void setIIN(int IIN) {
-        this.IIN = IIN;
+    public void setIin(String iin) {
+        this.iin = iin;
     }
 
     public String getUserAddress() {
@@ -80,11 +83,11 @@ public class User {
         this.userAddress = userAddress;
     }
 
-    public int getDriverLicense() {
+    public String getDriverLicense() {
         return driverLicense;
     }
 
-    public void setDriverLicense(int driverLicense) {
+    public void setDriverLicense(String driverLicense) {
         this.driverLicense = driverLicense;
     }
 
@@ -104,11 +107,52 @@ public class User {
         this.password = password;
     }
 
-    public Enum getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", iin=" + iin +
+                ", userAddress='" + userAddress + '\'' +
+                ", driverLicense=" + driverLicense +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User that = (User) o;
+        return Objects.equals(iin, that.iin) &&
+                driverLicense == that.driverLicense &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(birthday, that.birthday) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(userAddress, that.userAddress) &&
+                Objects.equals(login, that.login) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(role, that.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, birthday, phoneNumber, email, iin, userAddress,
+                driverLicense, login, password, role);
     }
 }

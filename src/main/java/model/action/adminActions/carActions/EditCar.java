@@ -1,16 +1,16 @@
 package model.action.adminActions.carActions;
 
+import model.DAO.CarDAO;
 import model.DAO.CarDAOImpl;
 import model.action.Action;
 import model.action.userActions.Validator;
-import model.entity.CarEntity;
+import model.entity.Car;
 import model.entity.enumeration.CarStatus;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -39,13 +39,13 @@ public class EditCar implements Action {
     }
 
     private void doEdit(long carId, String name, String gosNo, String color, CarStatus carStatus){
-        CarEntity car = new CarEntity();
+        Car car = new Car();
         car.setId(carId);
         car.setName(name);
         car.setGosNo(gosNo);
         car.setColor(color);
         car.setStatus(carStatus);
-        CarDAOImpl carDAO = new CarDAOImpl();
+        CarDAO carDAO = new CarDAOImpl();
         carDAO.saveOrUpdate(car);
     }
 }

@@ -1,51 +1,81 @@
 package model.entity;
 
-import java.util.Date;
+import model.entity.enumeration.OrderStatus;
 
-public class Order {
-    private int orderID;
-    private Date orderDate;
-    private User userID;
-    private int totalCost;
-    private int discount;
+import java.sql.Timestamp;
+import java.util.Objects;
 
-    public int getOrderID() {
-        return orderID;
+public class Order extends BaseEntity {
+    private Timestamp date;
+    private long userId;
+    private long carId;
+    private OrderStatus status;
+
+    public long getId() {
+        return id;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Timestamp getDate() {
+        return date;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
-    public User getUserID() {
-        return userID;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public int getTotalCost() {
-        return totalCost;
+    public long getCarId() {
+        return carId;
     }
 
-    public void setTotalCost(int totalCost) {
-        this.totalCost = totalCost;
+    public void setCarId(long carId) {
+        this.carId = carId;
     }
 
-    public int getDiscount() {
-        return discount;
+    public OrderStatus getStatus() {
+        return status;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", date=" + date +
+                ", userId=" + userId +
+                ", carId=" + carId +
+                ", status=" + status +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order that = (Order) o;
+        return id == that.id &&
+                userId == that.userId &&
+                carId == that.carId &&
+                status == that.status &&
+                Objects.equals(date, that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, userId, carId, status);
     }
 }

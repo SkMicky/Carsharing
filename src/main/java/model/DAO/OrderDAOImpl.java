@@ -1,7 +1,7 @@
 package model.DAO;
 
 import model.ConnectionPool;
-import model.entity.OrderEntity;
+import model.entity.Order;
 import model.entity.enumeration.OrderStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,8 +37,8 @@ public class OrderDAOImpl implements OrderDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(OrderDAOImpl.class.getName());
 
-    private OrderEntity getFromDB(ResultSet resultSet) throws SQLException {
-        OrderEntity order = new OrderEntity();
+    private Order getFromDB(ResultSet resultSet) throws SQLException {
+        Order order = new Order();
         order.setId(resultSet.getLong("ORDER_ID"));
         order.setDate(resultSet.getTimestamp("ORDER_DATE"));
         order.setUserId(resultSet.getLong("USER_ID"));
@@ -47,7 +47,7 @@ public class OrderDAOImpl implements OrderDAO {
         return order;
     }
 
-    private void saveToDB(String sql, OrderEntity order) {
+    private void saveToDB(String sql, Order order) {
         Connection connection = connectionPool.getConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -64,8 +64,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<OrderEntity> getAll() {
-        List<OrderEntity> orders = new ArrayList<>();
+    public List<Order> getAll() {
+        List<Order> orders = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_ORDERS);
@@ -82,8 +82,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public OrderEntity getById(long orderId){
-        OrderEntity order = new OrderEntity();
+    public Order getById(long orderId){
+        Order order = new Order();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_ID)){
@@ -102,8 +102,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<OrderEntity> getByUserId(long userId) {
-        List<OrderEntity> orders = new ArrayList<>();
+    public List<Order> getByUserId(long userId) {
+        List<Order> orders = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_USER_ID)){
@@ -122,8 +122,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<OrderEntity> getByCarId(long carId) {
-        List<OrderEntity> orders = new ArrayList<>();
+    public List<Order> getByCarId(long carId) {
+        List<Order> orders = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ORDER_BY_CAR_ID)){
@@ -142,11 +142,11 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void saveOrUpdate(OrderEntity orderEntity) {
-        if(orderEntity.getId() == 0) {
-            saveToDB(ADD_ORDER, orderEntity);
+    public void saveOrUpdate(Order order) {
+        if(order.getId() == 0) {
+            saveToDB(ADD_ORDER, order);
         } else {
-            saveToDB(UPDATE_ORDER, orderEntity);
+            saveToDB(UPDATE_ORDER, order);
         }
     }
 

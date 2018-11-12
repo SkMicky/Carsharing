@@ -1,6 +1,6 @@
 package filter;
 
-import model.entity.UserEntity;
+import model.entity.User;
 import model.entity.enumeration.UserRole;
 
 import javax.servlet.*;
@@ -56,9 +56,9 @@ public class SecurityFilter implements Filter {
         if (active) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-            UserEntity user = (UserEntity) httpServletRequest.getSession().getAttribute("authorizedUser");
+            User user = (User) httpServletRequest.getSession().getAttribute("authorizedUser");
             if (user == null) {
-                user = new UserEntity();
+                user = new User();
                 user.setRole(UserRole.GUEST);
             }
             String reqURI = httpServletRequest.getRequestURI();

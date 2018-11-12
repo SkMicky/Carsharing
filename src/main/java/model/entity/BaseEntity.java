@@ -1,7 +1,7 @@
 package model.entity;
 
-public abstract class AbstractEntity {
-    private long id;
+public abstract class BaseEntity {
+    long id;
 
     public long getId() {
         return id;
