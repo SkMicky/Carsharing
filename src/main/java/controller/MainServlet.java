@@ -18,7 +18,6 @@ public class MainServlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(MainServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         Action action = new URIAction().getAction(request);
         try {
             String view = action.execute(request, response);
