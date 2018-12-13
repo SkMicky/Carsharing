@@ -25,7 +25,8 @@ import java.util.List;
 public class CarReturner implements Action {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, UnsupportedEncodingException, LoginException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+            SQLException{
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("authorizedUser");
         String view;
@@ -33,17 +34,22 @@ public class CarReturner implements Action {
             long userId = user.getId();
             OrderDAO orderDAO = new OrderDAOImpl();
             List<Order> listOrders = orderDAO.getByUserId(userId);
-            long totalTime = getTotalTime(listOrders);
-            request.setAttribute("totalTime", totalTime);
-            request.setAttribute("orders", listOrders);
-            changeCarStatus(userId);
-            for(Order order : listOrders){
-                if(order.getUserId() == userId){
-                    orderDAO.changeStatus(OrderStatus.IS_DONE.getId(), order.getId());
+            try {
+                request.setAttribute("orders", listOrders);
+                long totalTime = getTotalTime(listOrders);
+                request.setAttribute("totalTime", totalTime);
+                for (Order order : listOrders) {
+                    if (order.getUserId() == userId) {
+                        orderDAO.changeStatus(OrderStatus.IS_DONE.getId(), order.getId());
+                    }
                 }
+                changeCarStatus(userId);
+                request.setAttribute("success", "Машина успешно возвращена");
+                view = "/view/jsp/carReturn.jsp";
+            } catch(IndexOutOfBoundsException e) {
+                request.setAttribute("message", "У пользователя нет заказов");
+                view = "/view/jsp/carReturn.jsp";
             }
-            request.setAttribute("success", "Машина успешно возвращена");
-            view = "/view/jsp/carReturn.jsp";
         } else {
             request.setAttribute("error", "Ошибка возвращения машины");
             view = "/view/jsp/error.jsp";

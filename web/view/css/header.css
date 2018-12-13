@@ -22,7 +22,7 @@ body, div{
 .list{
     display:grid;
     list-style-type: none;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .header-link{

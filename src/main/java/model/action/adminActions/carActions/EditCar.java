@@ -6,6 +6,7 @@ import model.action.Action;
 import model.action.userActions.Validator;
 import model.entity.Car;
 import model.entity.enumeration.CarStatus;
+import model.entity.enumeration.Color;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class EditCar implements Action {
         long carId = Long.parseLong(request.getParameter("carId"));
         String name = request.getParameter("name");
         String gosNo = request.getParameter("gosNo");
-        String color = request.getParameter("color");
+        Color color = Color.getColors(request.getParameter("color"));
         int carStatusId = Integer.parseInt(request.getParameter("status"));
         CarStatus carStatus = CarStatus.getCarStatus(carStatusId);
         if (validator.validateGosNo(gosNo)){
@@ -38,7 +39,7 @@ public class EditCar implements Action {
         return view;
     }
 
-    private void doEdit(long carId, String name, String gosNo, String color, CarStatus carStatus){
+    private void doEdit(long carId, String name, String gosNo, Color color, CarStatus carStatus){
         Car car = new Car();
         car.setId(carId);
         car.setName(name);

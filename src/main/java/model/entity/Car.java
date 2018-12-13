@@ -1,6 +1,7 @@
 package model.entity;
 
 import model.entity.enumeration.CarStatus;
+import model.entity.enumeration.Color;
 
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Car extends BaseEntity {
 
     private String name;
     private String gosNo;
-    private String color;
+    private Color color;
     private CarStatus status;
 
     public long getId() {
@@ -35,11 +36,11 @@ public class Car extends BaseEntity {
         this.gosNo = gosNo;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

@@ -76,9 +76,9 @@ public class UserDAOImpl implements UserDAO {
         user.setBirthday(resultSet.getDate("USER_BIRTHDAY"));
         user.setPhoneNumber(resultSet.getString("USER_PHONENUMBER"));
         user.setEmail(resultSet.getString("USER_EMAIL"));
-        user.setIIN(resultSet.getLong("USER_IIN"));
+        user.setIin(resultSet.getString("USER_IIN"));
         user.setUserAddress(resultSet.getString("USER_ADDRESS"));
-        user.setDriverLicense(resultSet.getLong("USER_DRIVERLICENSE"));
+        user.setDriverLicense(resultSet.getString("USER_DRIVERLICENSE"));
         user.setLogin(resultSet.getString("USER_LOGIN"));
         user.setPassword(resultSet.getString("USER_PASSWORD"));
         user.setRole(UserRole.getUserRole(resultSet.getInt("USER_ROLE")));
@@ -93,9 +93,9 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setDate(3, user.getBirthday());
             preparedStatement.setString(4, user.getPhoneNumber());
             preparedStatement.setString(5, user.getEmail());
-            preparedStatement.setLong(6, user.getIIN());
+            preparedStatement.setString(6, user.getIin());
             preparedStatement.setString(7, user.getUserAddress());
-            preparedStatement.setLong(8, user.getDriverLicense());
+            preparedStatement.setString(8, user.getDriverLicense());
             preparedStatement.setString(9, user.getLogin());
             preparedStatement.setString(10, user.getPassword());
             preparedStatement.setInt(11, user.getRole().getId());
@@ -198,9 +198,9 @@ public class UserDAOImpl implements UserDAO {
                 preparedStatement.setDate(3, user.getBirthday());
                 preparedStatement.setString(4, user.getPhoneNumber());
                 preparedStatement.setString(5, user.getEmail());
-                preparedStatement.setLong(6, user.getIIN());
+                preparedStatement.setString(6, user.getIin());
                 preparedStatement.setString(7, user.getUserAddress());
-                preparedStatement.setLong(8, user.getDriverLicense());
+                preparedStatement.setString(8, user.getDriverLicense());
                 preparedStatement.setString(9, user.getLogin());
                 preparedStatement.setLong(10, user.getId());
                 preparedStatement.execute();

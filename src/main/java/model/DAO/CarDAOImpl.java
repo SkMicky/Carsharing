@@ -4,6 +4,7 @@ import model.ConnectionPool;
 import model.entity.BaseEntity;
 import model.entity.Car;
 import model.entity.enumeration.CarStatus;
+import model.entity.enumeration.Color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,7 +54,7 @@ public class CarDAOImpl implements CarDAO {
         car.setId(resultSet.getLong("CAR_ID"));
         car.setName(resultSet.getString("CAR_NAME"));
         car.setGosNo(resultSet.getString("CAR_GOSNo"));
-        car.setColor(resultSet.getString("CAR_COLOR"));
+        car.setColor(Color.getColors(resultSet.getString("CAR_COLOR")));
         car.setStatus(CarStatus.getCarStatus(resultSet.getInt("CAR_STATUS")));
         return car;
     }
@@ -64,7 +65,7 @@ public class CarDAOImpl implements CarDAO {
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, car.getName());
             preparedStatement.setString(2, car.getGosNo());
-            preparedStatement.setString(3, car.getColor());
+            preparedStatement.setString(3, car.getColor().getColorName());
             preparedStatement.setInt(4, car.getStatus().getId());
             preparedStatement.execute();
         } catch(SQLException e){
@@ -216,7 +217,7 @@ public class CarDAOImpl implements CarDAO {
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CAR)){
                 preparedStatement.setString(1, car.getName());
                 preparedStatement.setString(2, car.getGosNo());
-                preparedStatement.setString(3, car.getColor());
+                preparedStatement.setString(3, car.getColor().getColorName());
                 preparedStatement.setInt(4, car.getStatus().getId());
                 preparedStatement.setLong(5, car.getId());
                 preparedStatement.execute();

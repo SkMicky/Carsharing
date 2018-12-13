@@ -62,8 +62,7 @@ public class AutorAction implements Action {
         try {
             String hashPassword = encryptor.getHashPassword(password);
             UserDAO userDAO = new UserDAOImpl();
-            User user = new User();
-            user = userDAO.searchInDataBase(login, hashPassword);
+            User user = userDAO.searchInDataBase(login, hashPassword);
             if (user.getLogin() == null) {
                 flag = false;
             }

@@ -6,6 +6,7 @@ import model.action.Action;
 import model.action.userActions.Validator;
 import model.entity.Car;
 import model.entity.enumeration.CarStatus;
+import model.entity.enumeration.Color;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class AddCar implements Action {
         String view;
         String name = request.getParameter("name");
         String gosNo = request.getParameter("gosNo");
-        String color = request.getParameter("color");
+        Color color = Color.getColors(request.getParameter("color"));
         if(validator.validateGosNo(gosNo)) {
             addCar(name, gosNo, color);
             request.setAttribute("success", "Машина успешно добавлена");
@@ -35,7 +36,7 @@ public class AddCar implements Action {
         return view;
     }
 
-    private void addCar(String name, String gosNo, String color){
+    private void addCar(String name, String gosNo, Color color){
         CarDAO carDAO = new CarDAOImpl();
         Car car = new Car();
         car.setName(name);

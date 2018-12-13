@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: michael
@@ -7,13 +8,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setBundle basename="property.site" var="bundle" />
 <html>
 <head>
     <title>Header</title>
-    <link rel="stylesheet" type="text/css" href="/view/css/header-admin.css">
+    <link rel="stylesheet" type="text/css" href="/view/css/header.css">
 </head>
 <body>
-<h5 class="welcome">Добро пожаловать ${authorizedUser.lastName} ${authorizedUser.firstName}</h5>
+<h5 class="welcome"><fmt:message key="welcome" bundle="${bundle}" /> ${authorizedUser.lastName} ${authorizedUser.firstName}</h5>
 <c:if test="${requestScope['javax.servlet.forward.request_uri'] eq '/view/jsp/success.jsp'}">
     <div class="success">
         <c:import url="/view/jsp/success.jsp" /> ${requestScope.success}
@@ -31,36 +33,36 @@
     <div class="menu-bar">
         <nav class="navigation">
             <ul class="list">
-                <li class="item"><a class="header-link" href="/view/jsp/adminPage.jsp">Главная</a></li>
-                <li class="item">Машины
+                <li class="item"><a class="header-link" href="/view/jsp/adminPage.jsp"><fmt:message key="home" bundle="${bundle}" /></a></li>
+                <li class="item"><fmt:message key="car-item" bundle="${bundle}" />
                     <ul class="submenu">
-                        <li><a class="header-link" href="/showAllCars">Все машины</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/carIdForm.jsp">Машины по ID</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/carGosNoForm.jsp">Машины по гос.номеру</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/carsColorForm.jsp">Машины по цвету</a></li>
-                        <li><a class="header-link" href="/view/jsp/addCar.jsp">Добавить машину</a></li>
+                        <li><a class="header-link" href="/showAllCars"><fmt:message key="allCars" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/carIdForm.jsp"><fmt:message key="carsById" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/carGosNoForm.jsp"><fmt:message key="carsByGosNo" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/carsColorForm.jsp"><fmt:message key="carsByColor" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/addCar.jsp"><fmt:message key="addCar" bundle="${bundle}" /></a></li>
                     </ul>
                 </li>
-                <li class="item">Пользователи
+                <li class="item"><fmt:message key="users" bundle="${bundle}" />
                     <ul class="submenu">
-                        <li><a class="header-link" href="/showAllUsers">Все пользователи</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/userIdForm.jsp">Пользователь по ID</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/userLoginForm.jsp">Пользователь по логину</a></li>
+                        <li><a class="header-link" href="/showAllUsers"><fmt:message key="allUsers" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/userIdForm.jsp"><fmt:message key="userById" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/userLoginForm.jsp"><fmt:message key="userByLogin" bundle="${bundle}" /></a></li>
                     </ul>
                 </li>
-                <li class="item">Заказы
+                <li class="item"><fmt:message key="orders" bundle="${bundle}" />
                     <ul class="submenu">
-                        <li><a class="header-link" href="/showAllOrders">Все заказы</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/orderIdForm.jsp">Заказы по ID</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/ordersByUserIdForm.jsp">Заказы по ID пользователя</a></li>
-                        <li><a class="header-link" href="/view/jsp/search/ordersByCarIdForm.jsp">Заказы по ID машины</a></li>
+                        <li><a class="header-link" href="/showAllOrders"><fmt:message key="allOrders" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/orderIdForm.jsp"><fmt:message key="orderById" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/ordersByUserIdForm.jsp"><fmt:message key="orderByUserId" bundle="${bundle}" /></a></li>
+                        <li><a class="header-link" href="/view/jsp/search/ordersByCarIdForm.jsp"><fmt:message key="orderByCarId" bundle="${bundle}" /></a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </div>
     <div class="login">
-        <a href="/exit">Выход</a>
+        <a href="/exit"><fmt:message key="exit" bundle="${bundle}" /></a>
     </div>
 </header>
 </body>
