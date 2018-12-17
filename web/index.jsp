@@ -13,15 +13,6 @@
     <link rel="stylesheet" type="text/css" href="/view/css/main.css">
   </head>
   <body>
-  <ul class="lang_menu">
-      <li class="lang-item"><fmt:message key="lang" bundle="${bundle}" />
-          <ul class="flag-menu">
-              <c:forEach items="${langsList}" var="language">
-                  <li class="flag-item"><a href="/?lang=${language.getLocale()}">${language}</a></li>
-              </c:forEach>
-          </ul>
-      </li>
-  </ul>
     <header class="header">
         <div class = "logo">
             <h1>Carsharing</h1>
@@ -35,6 +26,15 @@
                 </ul>
             </nav>
         </div>
+        <ul class="lang_menu">
+            <li class="item"><fmt:message key="lang" bundle="${bundle}" />
+                <ul class="flag-menu">
+                    <c:forEach items="${langsList}" var="language">
+                        <li class="flag-item"><a href="/?lang=${language.getLocale()}">${language}</a></li>
+                    </c:forEach>
+                </ul>
+            </li>
+        </ul>
         <div class="login">
             <a href="view/jsp/authorization.jsp"><fmt:message key="login" bundle="${bundle}" /></a> <span><fmt:message key="or" bundle="${bundle}" /></span>
             <a href="view/jsp/registration.jsp"><fmt:message key="registration" bundle="${bundle}" /></a>

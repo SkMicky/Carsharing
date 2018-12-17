@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Header</title>
-    <link rel="stylesheet" type="text/css" href="/view/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/view/css/header-admin.css">
 </head>
 <body>
 <h5 class="welcome"><fmt:message key="welcome" bundle="${bundle}" /> ${authorizedUser.lastName} ${authorizedUser.firstName}</h5>

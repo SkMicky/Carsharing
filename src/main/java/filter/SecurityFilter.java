@@ -45,7 +45,7 @@ public class SecurityFilter implements Filter {
         ACCESS_MAP.put("/booking", UserRole.CLIENT.getId());
         ACCESS_MAP.put("/listFreeCars", UserRole.CLIENT.getId());
         ACCESS_MAP.put("/carReturn", UserRole.CLIENT.getId());
-        ACCESS_MAP.put("/exit", UserRole.CLIENT.getId());
+        ACCESS_MAP.put("/exit", UserRole.ADMIN.getId());
         ACCESS_MAP.put("/registration", UserRole.GUEST.getId());
         ACCESS_MAP.put("/authorization", UserRole.GUEST.getId());
         ACCESS_MAP.put("/setLocal", UserRole.GUEST.getId());

@@ -8,6 +8,6 @@ import java.io.IOException;
 public class ErrorAction implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return null;
+        return "/view/jsp/error.jsp";
     }
 }

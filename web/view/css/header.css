@@ -25,6 +25,14 @@ body, div{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.lang_menu{
+    list-style-type: none;
+}
+
+.lang_menu .item:hover{
+    color: darkred;
+}
+
 .header-link{
     display: block;
     text-decoration: none;
@@ -39,10 +47,9 @@ body, div{
     color: darkred;
 }
 
-.submenu {
+.flag-menu {
     background: #273037;
     position: absolute;
-    left: 0;
     top: 100%;
     z-index: 5;
     width: 180px;
@@ -51,15 +58,15 @@ body, div{
     transform-origin: 0 0;
     transition: .5s ease-in-out;
 }
-.submenu a {
+.flag-menu a {
     color: white;
     text-align: left;
     padding: 12px 15px;
     font-size: 13px;
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
-.submenu li:last-child a { border-bottom: none; }
-.list > li:hover .submenu {
+.flag-menu li:last-child a { border-bottom: none; }
+.lang_menu > li:hover .flag-menu {
     opacity: 1;
     transform: scaleY(1);
 }

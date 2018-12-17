@@ -18,8 +18,8 @@
 <body>
 <c:import url="userHeader.jsp" />
     <c:if test="${requestScope.orders.size() ne 0}">
-        <fmt:message key="returnCar" bundle="${bundle}" />!
         <div class="order-container">
+            <h1><fmt:message key="returnCar" bundle="${bundle}" />!</h1>
             <c:choose>
                 <c:when test="${totalTime == 1}">
                     <span class="totalTime"><fmt:message key="rentTime" bundle="${bundle}" />: ${totalTime} <fmt:message key="minute" bundle="${bundle}" /></span>
