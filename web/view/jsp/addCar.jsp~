@@ -26,7 +26,7 @@
             <select name="color" class="main__input main__color" required>
                     <option class="main__input main__color" value="<fmt:message key="chooseColor" bundle="${bundle}" />" disabled selected><fmt:message key="chooseColor" bundle="${bundle}" /></option>
                 <c:forEach items="${colorsList}" var="colors">
-                    <option class="main__input main__color" value="${colors.getColorName()}"><fmt:message key="${colors.getColorName()}" bundle="${colorBundle}" /></option>
+                    <option class="main__input main__color" value="${colors}"><fmt:message key="${colors.getColorName()}" bundle="${colorBundle}" /></option>
                 </c:forEach>
             </select>
             <input type="submit" class="main__button" value="<fmt:message key="add" bundle="${bundle}" />">
