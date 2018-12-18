@@ -1,42 +1,48 @@
 package model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConnectionPool {
-    private static volatile ConnectionPool uniqueInstance;
-    private BlockingQueue<Connection> availableConnections = new ArrayBlockingQueue<Connection>(25);
+    private static volatile ConnectionPool instance;
+    private BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<Connection>();
+    private final int CONNECTIONS_COUNT = Integer.parseInt(ConnectionSource.getPoolVolume());
+    private final String URL = ConnectionSource.getUrl();
+    private final String USERNAME = ConnectionSource.getUsername();
+    private final String PASSWORD = ConnectionSource.getPassword();
+    private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class.getName());
 
-    private ConnectionPool(int connectionsCount) {
-        for (int i = 0; i < connectionsCount; i++) {
-            availableConnections.add(createConnect());
+
+
+    private ConnectionPool() {
+        for (int i = 0; i < CONNECTIONS_COUNT; i++) {
+            createConnection();
         }
     }
 
-    private Connection createConnect() {
-        Connection con = null;
-        ResourceBundle resource = ResourceBundle.getBundle("resources/properties/database/database");
-        String url = resource.getString("db.url");
-        String username = resource.getString("db.user");
-        String password = resource.getString("db.password");
+    private void createConnection(){
         try {
-            con = DriverManager.getConnection(url, username, password);
+            Class.forName(ConnectionSource.getDriver());
+            Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            availableConnections.add(con);
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Don't connected!");
+            LOGGER.error(e);
+        } catch (ClassNotFoundException e){
+            LOGGER.error(e);
         }
-        return con;
     }
 
     public static ConnectionPool getInstance() {
-        if(uniqueInstance == null){
-            uniqueInstance = new ConnectionPool(15);
+        if(instance == null){
+            instance = new ConnectionPool();
         }
-        return uniqueInstance;
+        return instance;
     }
 
     public Connection getConnection(){
@@ -47,4 +53,3 @@ public class ConnectionPool {
         availableConnections.add(con);
     }
 }
-

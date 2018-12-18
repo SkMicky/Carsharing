@@ -1,59 +1,80 @@
 package model.entity;
 
-public class Car {
+import model.entity.enumeration.CarStatus;
+import model.entity.enumeration.Color;
 
-    private int carID;
-    private String carName;
-    private String carModel;
-    private String carGosNo;
-    private String carColor;
-    private double carCost;
+import java.util.Objects;
 
-    public int getCarID() {
-        return carID;
+public class Car extends BaseEntity {
+
+    private String name;
+    private String gosNo;
+    private Color color;
+    private CarStatus status;
+
+    public long getId() {
+        return id;
     }
 
-    public void setCarID(int carID) {
-        this.carID = carID;
+    public void setId(long id){
+        this.id = id;
     }
 
-    public String getCarName() {
-        return carName;
+    public String getName() {
+        return name;
     }
 
-    public void setCarName(String carName) {
-        this.carName = carName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getGosNo() {
+        return gosNo;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setGosNo(String gosNo) {
+        this.gosNo = gosNo;
     }
 
-    public String getCarGosNo() {
-        return carGosNo;
+    public Color getColor() {
+        return color;
     }
 
-    public void setCarGosNo(String carGosNo) {
-        this.carGosNo = carGosNo;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public String getCarColor() {
-        return carColor;
+    public CarStatus getStatus() {
+        return status;
     }
 
-    public void setCarColor(String carColor) {
-        this.carColor = carColor;
+    public void setStatus(CarStatus status) {
+        this.status = status;
     }
 
-    public double getCarCost() {
-        return carCost;
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", gosNo='" + gosNo + '\'' +
+                ", color='" + color + '\'' +
+                ", status=" + status +
+                '}';
     }
 
-    public void setCost(int carCost) {
-        this.carCost = carCost;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name) &&
+                Objects.equals(gosNo, car.gosNo) &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(status, car.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, gosNo, color, status);
     }
 }
