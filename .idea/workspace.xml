@@ -6,8 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76f83735-fb77-4a8e-8273-57c785ef7e5e" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/com/epam/carsharing/target/" />
+    <list default="true" id="94c26804-e772-4455-883f-8033abc35cdf" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,91 +26,166 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="CARSHARING" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="CARSHARING" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="CARSHARING" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="carsharing: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="hideWarnings" value="true" />
+    <option name="HIDE_WARNINGS" value="true" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1396339135">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="27" />
+          <entry key="project.open.time.107" value="1" />
+          <entry key="project.open.time.108" value="1" />
+          <entry key="project.open.time.110" value="1" />
+          <entry key="project.open.time.137" value="1" />
+          <entry key="project.open.time.63" value="1" />
+          <entry key="project.open.time.660" value="1" />
+          <entry key="project.open.time.75" value="1" />
+          <entry key="project.open.time.76" value="3" />
+          <entry key="project.open.time.77" value="2" />
+          <entry key="project.open.time.78" value="2" />
+          <entry key="project.open.time.79" value="1" />
+          <entry key="project.open.time.80" value="2" />
+          <entry key="project.open.time.81" value="2" />
+          <entry key="project.open.time.82" value="2" />
+          <entry key="project.open.time.83" value="1" />
+          <entry key="project.open.time.84" value="2" />
+          <entry key="project.open.time.85" value="1" />
+          <entry key="project.open.time.87" value="1" />
+          <entry key="project.open.time.89" value="1" />
+          <entry key="project.open.time.90" value="1" />
+          <entry key="project.open.time.97" value="1" />
+          <entry key="project.opened" value="29" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="12" />
+          <entry key="java" value="11886" />
+          <entry key="jsp" value="514" />
+          <entry key="properties" value="62" />
+          <entry key="scss" value="29" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="11886" />
+          <entry key="JSP" value="514" />
+          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="Properties" value="62" />
+          <entry key="SCSS" value="29" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="66" />
+          <entry key="jsp" value="1" />
+          <entry key="properties" value="1" />
+          <entry key="scss" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="66" />
+          <entry key="JSP" value="1" />
+          <entry key="Properties" value="1" />
+          <entry key="SCSS" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/CarEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="CSS File" />
-        <option value="Enum" />
         <option value="Class" />
-        <option value="Jsp File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>favi</find>
-      <find>ROOT</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/com/epam/carsharing/web/index.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/com/epam/carsharing/resources/property/color_en.properties" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/resources/property/site_en.properties" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/resources/property/site.properties" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/resources/property/site_ru.properties" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/URIAction.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/filter/LanguageFilter.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/footer.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/css/footer.css" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/adminPage.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/authorization.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/editUser.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/error.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/registration.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/success.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/enumeration/Language.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/DAO/CarDAOImpl.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/Car.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carIdForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/css/showGeneral.css" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carGosNoForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carsColorForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/orderIdForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/ordersByCarIdForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/ordersByUserIdForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/userIdForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/userLoginForm.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/clientActions/ShowUserByLogin.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/clientActions/ShowUserById.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showCarBy.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showUserBy.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showOrderBy.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/userHeader.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/userPage.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/userActions/CarReturner.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/listFreeCars.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllCars.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllOrders.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllUsers.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/editCar.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/controller/MainServlet.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/ErrorAction.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/adminHeader.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/filter/SecurityFilter.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/index.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/carReturn.jsp" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/css/main.css" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/css/header.css" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/carActions/AddCar.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/enumeration/Color.java" />
-        <option value="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/addCar.jsp" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/MainServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/GeneralDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/OrderDetail.java" />
+        <option value="$PROJECT_DIR$/src/resources/properties/database/database.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/Role.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/DAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/Car.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/UserEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/OrderEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/ConnectionSource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/CarDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/AbstractEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/AbstractDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/OrderDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/OrderDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/CarDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/UserDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/DAO/UserDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/ConnectionPool.java" />
+        <option value="$PROJECT_DIR$/web/main.scss" />
+        <option value="$PROJECT_DIR$/src/main/java/model/entity/CarEntity.java" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -125,33 +201,32 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Carsharing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Carsharing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="706" />
+    <option name="width" value="1252" />
+    <option name="height" value="741" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,46 +255,79 @@
             <path>
               <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
               <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="properties" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="properties" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Carsharing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsharing" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545309780753" />
-    <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Carsharing-master" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537437612106" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/resources/property/color" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/resources/property" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/web/WEB-INF/lib" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/out/artifacts/Carsharing_war_exploded/view" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/web/view/css" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/resources/property/color" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/resources/property" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/src/main/java/filter" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show" />
-      <recent name="$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search" />
+      <recent name="$PROJECT_DIR$/src/main/java/model" />
+      <recent name="$PROJECT_DIR$/src/main/java/model/DAO" />
+      <recent name="$PROJECT_DIR$/src/main/java/model/entity" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -234,17 +342,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomic">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="Carsharing" />
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Tomic" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.90" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8081/" />
       <deployment>
         <artifact name="Carsharing:war exploded">
           <settings>
@@ -253,16 +373,16 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_Carsharing_3" />
+        <option name="BASE_DIRECTORY_NAME" value="Tomcat_7_0_90_Carsharing" />
         <option name="HTTP_PORT" value="8081" />
       </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="38544" />
+        <option name="DEBUG_PORT" value="42122" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -310,732 +430,280 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
+        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Carsharing:war exploded" />
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Test" />
-      <item itemvalue="Tomcat Server.Tomic" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Test" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="76f83735-fb77-4a8e-8273-57c785ef7e5e" name="Default Changelist" comment="" />
-      <created>1537596827563</created>
+      <changelist id="94c26804-e772-4455-883f-8033abc35cdf" name="Default" comment="" />
+      <created>1536658389743</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1537596827563</updated>
-      <workItem from="1537596838061" duration="1362000" />
-      <workItem from="1537795701627" duration="351000" />
-      <workItem from="1537797970983" duration="1065000" />
-      <workItem from="1537799396279" duration="2638000" />
-      <workItem from="1537849804757" duration="1778000" />
-      <workItem from="1537852853866" duration="1523000" />
-      <workItem from="1537854438266" duration="984000" />
-      <workItem from="1537898450493" duration="5671000" />
-      <workItem from="1537937841462" duration="31147000" />
-      <workItem from="1538052120616" duration="1650000" />
-      <workItem from="1538054674161" duration="2172000" />
-      <workItem from="1538058699003" duration="580000" />
-      <workItem from="1538060415954" duration="245000" />
-      <workItem from="1538060860567" duration="155000" />
-      <workItem from="1538109565375" duration="1346000" />
-      <workItem from="1538111291736" duration="633000" />
-      <workItem from="1538112155224" duration="601000" />
-      <workItem from="1538123632022" duration="4151000" />
-      <workItem from="1538385281552" duration="915000" />
-      <workItem from="1538386245020" duration="1273000" />
-      <workItem from="1538387973381" duration="1930000" />
-      <workItem from="1538402000942" duration="11385000" />
-      <workItem from="1538462953015" duration="7835000" />
-      <workItem from="1538480518722" duration="4830000" />
-      <workItem from="1538547825474" duration="8074000" />
-      <workItem from="1538624678324" duration="632000" />
-      <workItem from="1538627201345" duration="1635000" />
-      <workItem from="1538629067135" duration="16529000" />
-      <workItem from="1538712523060" duration="7376000" />
-      <workItem from="1538801337330" duration="617000" />
-      <workItem from="1538977575458" duration="9953000" />
-      <workItem from="1538995438325" duration="7762000" />
-      <workItem from="1539011543264" duration="4554000" />
-      <workItem from="1539078570241" duration="3874000" />
-      <workItem from="1539137690822" duration="14941000" />
-      <workItem from="1539240797604" duration="17036000" />
-      <workItem from="1539409167851" duration="2808000" />
-      <workItem from="1539440385284" duration="3047000" />
-      <workItem from="1539598203967" duration="11048000" />
-      <workItem from="1539612609617" duration="10027000" />
-      <workItem from="1539665365695" duration="3715000" />
-      <workItem from="1539705028344" duration="2433000" />
-      <workItem from="1539766896047" duration="6219000" />
-      <workItem from="1539802704997" duration="2278000" />
-      <workItem from="1539833605907" duration="10630000" />
-      <workItem from="1539946882780" duration="291000" />
-      <workItem from="1540026024048" duration="1420000" />
-      <workItem from="1540028854966" duration="1110000" />
-      <workItem from="1540184543796" duration="8879000" />
-      <workItem from="1540203518736" duration="1402000" />
-      <workItem from="1540207221465" duration="1708000" />
-      <workItem from="1540210356510" duration="907000" />
-      <workItem from="1540220907334" duration="1931000" />
-      <workItem from="1540224899414" duration="40000" />
-      <workItem from="1540224979577" duration="24000" />
-      <workItem from="1540225229559" duration="1280000" />
-      <workItem from="1540234646742" duration="1564000" />
-      <workItem from="1540236589142" duration="69000" />
-      <workItem from="1540236699247" duration="1776000" />
-      <workItem from="1540238566584" duration="44000" />
-      <workItem from="1540238663335" duration="1755000" />
-      <workItem from="1540240507688" duration="944000" />
-      <workItem from="1540270037850" duration="595000" />
-      <workItem from="1540272507747" duration="1057000" />
-      <workItem from="1540281636427" duration="1285000" />
-      <workItem from="1540284368143" duration="1175000" />
-      <workItem from="1540286245409" duration="672000" />
-      <workItem from="1540445261164" duration="976000" />
-      <workItem from="1540452006531" duration="1111000" />
-      <workItem from="1540459909747" duration="1761000" />
-      <workItem from="1540462239798" duration="1736000" />
-      <workItem from="1540465580031" duration="1859000" />
-      <workItem from="1540467791571" duration="1247000" />
-      <workItem from="1540469629359" duration="1660000" />
-      <workItem from="1540471683429" duration="998000" />
-      <workItem from="1540479290682" duration="515000" />
-      <workItem from="1540481144427" duration="1771000" />
-      <workItem from="1540483006515" duration="1749000" />
-      <workItem from="1540485231560" duration="1425000" />
-      <workItem from="1540534456734" duration="1273000" />
-      <workItem from="1540538426242" duration="1887000" />
-      <workItem from="1540542898434" duration="1168000" />
-      <workItem from="1540545034451" duration="1624000" />
-      <workItem from="1540547171178" duration="1629000" />
-      <workItem from="1540548956514" duration="1769000" />
-      <workItem from="1540551670624" duration="1715000" />
-      <workItem from="1540553458091" duration="1749000" />
-      <workItem from="1540557938227" duration="334000" />
-      <workItem from="1540558893355" duration="30000" />
-      <workItem from="1540562609426" duration="801000" />
-      <workItem from="1540571169436" duration="1539000" />
-      <workItem from="1540611563949" duration="1707000" />
-      <workItem from="1540613393809" duration="1717000" />
-      <workItem from="1540616157862" duration="1772000" />
-      <workItem from="1540618374054" duration="9000" />
-      <workItem from="1540618491939" duration="18000" />
-      <workItem from="1540618677642" duration="5000" />
-      <workItem from="1540619203702" duration="1888000" />
-      <workItem from="1540621327638" duration="1716000" />
-      <workItem from="1540623129631" duration="1765000" />
-      <workItem from="1540633225119" duration="468000" />
-      <workItem from="1540634642211" duration="1200000" />
-      <workItem from="1540636066136" duration="569000" />
-      <workItem from="1540638501566" duration="1748000" />
-      <workItem from="1540640361259" duration="833000" />
-      <workItem from="1540652998822" duration="54000" />
-      <workItem from="1540696936347" duration="1002000" />
-      <workItem from="1540700745786" duration="1132000" />
-      <workItem from="1540741752264" duration="1706000" />
-      <workItem from="1540743551680" duration="1278000" />
-      <workItem from="1540745108871" duration="1710000" />
-      <workItem from="1540746870636" duration="1766000" />
-      <workItem from="1540749173600" duration="1766000" />
-      <workItem from="1540751008740" duration="1418000" />
-      <workItem from="1540792455086" duration="1712000" />
-      <workItem from="1540794321116" duration="674000" />
-      <workItem from="1540804681861" duration="792000" />
-      <workItem from="1540805716813" duration="1011000" />
-      <workItem from="1540872889616" duration="11731000" />
-      <workItem from="1540896639639" duration="6865000" />
-      <workItem from="1540917847015" duration="3296000" />
-      <workItem from="1540954978842" duration="4492000" />
-      <workItem from="1540968129924" duration="20522000" />
-      <workItem from="1541051632319" duration="13095000" />
-      <workItem from="1541079274809" duration="10587000" />
-      <workItem from="1541132903653" duration="13877000" />
-      <workItem from="1541166622458" duration="5238000" />
-      <workItem from="1541237675353" duration="23737000" />
-      <workItem from="1541398878864" duration="1468000" />
-      <workItem from="1541402033740" duration="3672000" />
-      <workItem from="1541406310214" duration="236000" />
-      <workItem from="1541407121229" duration="10187000" />
-      <workItem from="1541441342679" duration="1153000" />
-      <workItem from="1541484968258" duration="12647000" />
-      <workItem from="1541502905735" duration="2667000" />
-      <workItem from="1541521575222" duration="5576000" />
-      <workItem from="1541527391122" duration="93000" />
-      <workItem from="1541571449858" duration="11314000" />
-      <workItem from="1541654483287" duration="10847000" />
-      <workItem from="1541692684434" duration="14880000" />
-      <workItem from="1541747528307" duration="9095000" />
-      <workItem from="1541774191307" duration="4507000" />
-      <workItem from="1541998355117" duration="1659000" />
-      <workItem from="1542171761256" duration="598000" />
-      <workItem from="1542177137444" duration="1472000" />
-      <workItem from="1542187262880" duration="9262000" />
-      <workItem from="1542209759778" duration="74000" />
-      <workItem from="1542254028003" duration="6903000" />
-      <workItem from="1542267147830" duration="5610000" />
-      <workItem from="1542297554236" duration="600000" />
-      <workItem from="1542386412265" duration="1733000" />
-      <workItem from="1542609964095" duration="6363000" />
-      <workItem from="1542698545579" duration="2217000" />
-      <workItem from="1543048625241" duration="5890000" />
-      <workItem from="1543383752307" duration="46000" />
-      <workItem from="1543393010706" duration="817000" />
-      <workItem from="1543394035202" duration="12585000" />
-      <workItem from="1543513749793" duration="2807000" />
-      <workItem from="1543551417339" duration="2339000" />
-      <workItem from="1543559407253" duration="636000" />
-      <workItem from="1543563409495" duration="6334000" />
-      <workItem from="1543644974191" duration="13081000" />
-      <workItem from="1543763053590" duration="675000" />
-      <workItem from="1543822728729" duration="14696000" />
-      <workItem from="1543850008846" duration="2445000" />
-      <workItem from="1543869895063" duration="3702000" />
-      <workItem from="1544292443980" duration="4216000" />
-      <workItem from="1544296781573" duration="7459000" />
-      <workItem from="1544425591288" duration="8289000" />
-      <workItem from="1544504938321" duration="2976000" />
-      <workItem from="1544508649400" duration="3127000" />
-      <workItem from="1544517036956" duration="553000" />
-      <workItem from="1544517876334" duration="2149000" />
-      <workItem from="1544520121237" duration="6145000" />
-      <workItem from="1544696926056" duration="1892000" />
-      <workItem from="1544699754455" duration="622000" />
-      <workItem from="1544710377299" duration="599000" />
-      <workItem from="1544711164125" duration="26000" />
-      <workItem from="1544720062169" duration="239000" />
-      <workItem from="1544863779598" duration="3621000" />
-      <workItem from="1544875968754" duration="565000" />
-      <workItem from="1544876770993" duration="635000" />
-      <workItem from="1544882514860" duration="1209000" />
-      <workItem from="1544885267206" duration="169000" />
-      <workItem from="1544895907826" duration="840000" />
-      <workItem from="1544896843744" duration="104000" />
-      <workItem from="1544966725796" duration="601000" />
-      <workItem from="1545042756696" duration="134000" />
-      <workItem from="1545123302034" duration="1221000" />
-      <workItem from="1545139417744" duration="2926000" />
-      <workItem from="1545149225357" duration="1820000" />
-      <workItem from="1545154584861" duration="213000" />
-      <workItem from="1545207865616" duration="51000" />
-      <workItem from="1545208435980" duration="356000" />
-      <workItem from="1545304189797" duration="553000" />
-      <workItem from="1545308992277" duration="853000" />
-      <workItem from="1545310104932" duration="18000" />
+      <updated>1536658389743</updated>
+      <workItem from="1536658400452" duration="555000" />
+      <workItem from="1536659285072" duration="1202000" />
+      <workItem from="1536735016864" duration="1582000" />
+      <workItem from="1536737156343" duration="754000" />
+      <workItem from="1536739609181" duration="1505000" />
+      <workItem from="1536743163878" duration="11614000" />
+      <workItem from="1536759493855" duration="4832000" />
+      <workItem from="1536770467366" duration="4180000" />
+      <workItem from="1536813074062" duration="3937000" />
+      <workItem from="1536821119620" duration="3200000" />
+      <workItem from="1536832204552" duration="2090000" />
+      <workItem from="1536849018272" duration="1414000" />
+      <workItem from="1536855156515" duration="1087000" />
+      <workItem from="1536856864370" duration="1642000" />
+      <workItem from="1536860168424" duration="694000" />
+      <workItem from="1536902591942" duration="899000" />
+      <workItem from="1536904064444" duration="2740000" />
+      <workItem from="1536909240138" duration="10713000" />
+      <workItem from="1536924971170" duration="2657000" />
+      <workItem from="1536990371440" duration="1052000" />
+      <workItem from="1537007364526" duration="1708000" />
+      <workItem from="1537029273825" duration="1832000" />
+      <workItem from="1537038261665" duration="905000" />
+      <workItem from="1537085838847" duration="3066000" />
+      <workItem from="1537118861499" duration="2770000" />
+      <workItem from="1537186892328" duration="13737000" />
+      <workItem from="1537251652331" duration="8169000" />
+      <workItem from="1537264091238" duration="751000" />
+      <workItem from="1537347955441" duration="1188000" />
+      <workItem from="1537350197142" duration="958000" />
+      <workItem from="1537353125901" duration="95000" />
+      <workItem from="1537418625524" duration="430000" />
+      <workItem from="1537425785152" duration="7190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="683605000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="101148000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1374" height="750" extended-state="6" />
+    <frame x="-1" y="0" width="1368" height="741" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27348486" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23484848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.328" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.4512" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.496" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3279483" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32852563" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32852563" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32852563" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007576" side_tool="true" weight="0.32852563" />
-      <window_info anchor="bottom" id="Application Servers" order="11" weight="0.25480768" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.328" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32852563" />
-      <window_info anchor="bottom" id="Database Console" order="14" weight="0.32852563" />
-      <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" weight="0.3296" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3279483" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32956383" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="5" weight="0.20378788" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.20757575" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.19848485" />
-      <window_info anchor="right" id="Maven" order="9" weight="0.32954547" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26666668" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20757575" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32852563" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.4512" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4752" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32954547" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32852563" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32852563" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32852563" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007576" side_tool="true" weight="0.32852563" />
-      <window_info anchor="bottom" id="Application Servers" order="11" weight="0.25480768" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.328" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32852563" />
-      <window_info anchor="bottom" id="Database Console" order="14" weight="0.32852563" />
-      <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" weight="0.3296" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32954547" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32956383" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="5" weight="0.20378788" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.20757575" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.19848485" />
-      <window_info anchor="right" id="Maven" order="9" weight="0.32954547" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>request.getParameter(&quot;color&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>servletResponse.setLocale(Locale.ENGLISH);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>request.getParameter(&quot;id&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>user.getId()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>request.getParameter(&quot;CAR_ID&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>request.getParameter(&quot;carId&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>user.getLastName()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>resultSet.getString(1)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>request.getRequestURL()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>request.getRequestURI()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/css/showGeneral.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/DAO/CarDAO.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        <state relative-caret-position="120">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carGosNoForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carsColorForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/orderIdForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/ordersByCarIdForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/carIdForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/ordersByUserIdForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/userIdForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/search/userLoginForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/clientActions/ShowUserByLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/carActions/ShowCarByGosNo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/man.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/carActions/ShowCarById.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/clientActions/ShowUserById.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showUserBy.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="53" column="32" lean-forward="true" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showOrderBy.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/adminPage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/userHeader.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="10" lean-forward="true" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/userPage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/DAO/OrderDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/DAO/OrderDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2460">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllUsers.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllOrders.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/resources/property/color/colors.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/listFreeCars.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="41" lean-forward="true" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showAllCars.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/show/showCarBy.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/editCar.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/controller/MainServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/ErrorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/ExitAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/filter/SecurityFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="50" column="60" lean-forward="true" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/adminHeader.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-158">
-          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/carReturn.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="153" column="1" lean-forward="true" selection-start-line="153" selection-start-column="1" selection-end-line="153" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/Carsharing.iml">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7418c53-7377-49b3-8dee-803239ca7fe9/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/css/header-admin.css">
+    <entry file="file://$PROJECT_DIR$/src/resources/properties/database/database.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        <state relative-caret-position="90">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/css/header.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/Role.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="150">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/index.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/UserEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="285">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/enumeration/OrderStatus.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/OrderEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        <state relative-caret-position="255">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/LanguageChanger.java" />
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/filter/LanguageFilter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/AbstractEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="75">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/web/view/jsp/addCar.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/CarDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="28" column="96" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
+        <state relative-caret-position="60">
+          <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/adminActions/carActions/AddCar.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/OrderDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="26" column="69" lean-forward="true" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/enumeration/Language.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/AbstractDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="60">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/enumeration/Color.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/CarDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1414">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/OrderDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="177" column="53" selection-start-line="170" selection-start-column="8" selection-end-line="177" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/DAO/UserDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="160" column="31" lean-forward="true" selection-start-line="160" selection-start-column="31" selection-end-line="160" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/ConnectionSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/ConnectionPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/OrderDetail.java" />
+    <entry file="file://$PROJECT_DIR$/web/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/entity/CarEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/entity/Car.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-          <folding>
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/userActions/CarReturner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/userActions/RegistrationAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-585">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/src/main/java/model/action/userActions/AutorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/epam/carsharing/target/classes/model/action/userActions/RegistrationAction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1117,7 +785,17 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>apache-log4j-2.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
